@@ -1,0 +1,189 @@
+// 1450px
+@include xxxxlg-xxxxxlg {
+  // @include intro-xxxxlg-xxxxxlg;
+}
+// 1380px
+@include xxxlg-xxxxlg {
+  h1 {
+    font-size: 50px;
+    &.big {
+      font-size: 60px;
+    }
+  }
+  @include header-xxxlg-xxxxlg;
+  @include nav-xxxlg-xxxxlg;
+}
+// 1180px
+@include xlg-xxlg {
+  .auto__container {
+    padding: 0 30px;
+  }
+  h1 {
+    font-size: 46px;
+    &.big {
+      font-size: 55px;
+    }
+  }
+  h2 {
+    font-size: 40px;
+    &.sm {
+      font-size: 36px;
+    }
+  }
+  h5 {
+    font-size: 20px;
+  }
+  @include hero-xlg-xxlg;
+  @include offer-xlg-xxlg;
+  @include belief-xlg-xxlg;
+  @include footer-xlg-xxlg;
+  // service page
+  @include values-xlg-xxlg;
+  // insights page
+  @include insights-xlg-xxlg;
+  // form page
+  @include contact-xlg-xxlg;
+}
+// 1024px
+@include lg-xlg {
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  h1 {
+    font-size: 42px;
+    &.big {
+      font-size: 50px;
+    }
+  }
+  h2 {
+    font-size: 35px;
+    &.sm {
+      font-size: 32px;
+    }
+  }
+  main {
+    padding-top: 65px;
+  }
+  @include header-lg-xlg;
+  @include nav-lg-xlg;
+  @include benefits-lg-xlg;
+  @include cloud-lg-xlg;
+  @include footer-lg-xlg;
+  // service page
+  @include action-lg-xlg;
+  @include talk-lg-xlg;
+  // terms page
+  @include terms-lg-xlg;
+  // insights page
+  @include insights-lg-xlg;
+}
+// 930px
+@include md-lg {
+  h1 {
+    &.big {
+      font-size: 45px;
+    }
+  }
+  h2 {
+    font-size: 30px;
+  }
+  .button {
+    padding: 16px 24px;
+  }
+  @include hero-md-lg;
+  @include offer-md-lg;
+  @include mission-md-lg;
+  @include footer-md-lg;
+  // form page
+  @include contact-md-lg;
+}
+// 840px
+@include md-lg-extra {
+  @include offer-md-lg-extra;
+  // serice page
+
+  @include values-md-lg-extra;
+}
+// 750px
+@include sm-md {
+  .auto__container {
+    padding: 0 22px;
+  }
+  h1 {
+    font-size: 38px;
+    &.big {
+      font-size: 38px;
+    }
+  }
+  h2 {
+    font-size: 26px;
+    &.sm {
+      font-size: 28px;
+    }
+  }
+  @include header-sm-md;
+  @include cloud-sm-md;
+  @include footer-sm-md;
+  // serice page
+  @include action-sm-md;
+  @include talk-sm-md;
+  // article page
+  @include article-sm-md;
+  // insights page
+  @include insights-sm-md;
+}
+// 650px
+@include sm-md-extra {
+  .main {
+    &__wrapper {
+      display: flex;
+      flex-direction: column;
+      .mission {
+        order: 2;
+        margin-top: 0;
+      }
+    }
+  }
+  @include belief-sm-md-extra;
+  @include cloud-sm-md-extra;
+  // serice page
+  @include values-sm-md-extra;
+  // form page
+  @include contact-sm-md-extra;
+}
+// 540px
+@include xsm-sm {
+  .loadMore {
+    &:hover {
+      svg {
+        animation: unset !important;
+      }
+    }
+  }
+  @include hero-xsm-sm;
+  @include offer-xsm-sm;
+  @include mission-xsm-sm;
+  @include benefits-xsm-sm;
+  @include cloud-xsm-sm;
+  @include footer-xsm-sm;
+  // serice page
+  @include action-xsm-sm;
+  // terms page
+  @include terms-xsm-sm;
+
+  @include article-xsm-sm;
+
+  @include insights-xsm-sm;
+
+  @include places-xsm-sm;
+
+}
+// 440px
+@include xxsm-xsm {
+  // @include review-xxsm-xsm;
+}
+// 380px
+@include xxxsm-xxsm {
+  @include nav-xxxsm-xxsm;
+  @include offer-xxxsm-xxsm;
+}

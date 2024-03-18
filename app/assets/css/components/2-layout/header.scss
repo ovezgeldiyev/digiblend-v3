@@ -1,0 +1,429 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: $black;
+  width: 100%;
+  z-index: 99;
+  color: $white;
+  transition: 0.3s ease;
+  &.active {
+    background-color: #1e2222;
+  }
+  &.sticky {
+    background-color: #1e2222;
+    .header__inner {
+      padding: 12px 0;
+      &-phone {
+        span {
+          background-color: #1e2222;
+        }
+      }
+    }
+    .customSelect {
+      &__selected {
+        background-color: #1e2222;
+      }
+      &__options {
+        background-color: #1e2222;
+        &-item {
+          background-color: #1e2222;
+        }
+      }
+    }
+  }
+  .customSelect {
+    width: 60px;
+    &__selected {
+      padding: 0;
+      background: $black;
+      display: flex;
+      align-items: center;
+      font-family: $mainFont;
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 24px;
+      color: $white;
+      transition: 0.3s ease;
+
+      cursor: pointer;
+      img {
+        width: 16px;
+        height: 12px;
+        overflow: hidden;
+        margin-right: 4px;
+      }
+      svg {
+        position: static;
+        top: unset;
+        right: unset;
+        @include transformReset;
+        width: 14px;
+        height: 14px;
+        margin-left: 4px;
+      }
+    }
+    &__options {
+      background: $black;
+      width: unset;
+      min-width: calc(100% + 10px);
+      left: 50%;
+      @include transformX;
+      border-bottom: unset !important;
+      transition: 0.3s ease;
+
+      &-item {
+        padding: 5px;
+        background: $black;
+        display: flex;
+        align-items: center;
+        font-family: $mainFont;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 24px;
+        color: $white;
+        cursor: pointer;
+        border-top: unset;
+        transition: 0.3s ease;
+
+        img {
+          width: 16px;
+          height: 12px;
+          overflow: hidden;
+          margin-right: 4px;
+        }
+      }
+    }
+    &.active {
+      .customSelect {
+        &__selected {
+          svg {
+            transform: rotate(-180deg);
+          }
+        }
+      }
+    }
+  }
+  &__inner {
+    padding: 20px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: 0.3s ease;
+    height: 80px;
+    box-sizing: border-box;
+    &-side {
+      display: flex;
+      align-items: center;
+    }
+    &-buttons {
+      display: flex;
+      align-items: center;
+      .ct {
+        margin-right: 50px;
+      }
+      .button {
+        padding: 7px 25px;
+        font-size: 14px;
+        font-weight: 600;
+      }
+    }
+    &-logo {
+      display: flex;
+      align-items: center;
+      width: 116px;
+      margin-right: 17px;
+      img {
+        width: 100%;
+      }
+    }
+    &-stars {
+      display: flex;
+      align-items: center;
+      width: 100px;
+      display: none;
+
+      img {
+        width: 100%;
+      }
+    }
+    &-link {
+      font-weight: 600;
+      line-height: 100%;
+      color: $white;
+      padding: 22px 30px;
+      margin: 0 24px 0 0;
+    }
+    &-phone {
+      display: flex;
+      align-items: center;
+      margin-right: 26px;
+      position: relative;
+      transition: 0.3s ease;
+      &:hover {
+        opacity: 0.8;
+      }
+      &::before {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: calc(100% + 2px);
+        height: calc(100% + 2px);
+        background: linear-gradient(90deg, #3578e2 0%, #4d97e8 100%);
+        content: "";
+        transform: translate(-50%, -50%);
+        border-radius: 50px;
+      }
+      span {
+        position: relative;
+        padding: 12px 20px;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 100%;
+        background-color: $black;
+        border-radius: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: 0.3s ease;
+        b {
+          background: linear-gradient(90deg, #3578e2 0%, #4d97e8 100%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+          text-fill-color: transparent;
+        }
+      }
+    }
+    .check {
+      height: 30px;
+    }
+    p {
+      color: $white;
+    }
+  }
+}
+.drop {
+  position: fixed;
+  z-index: 10000;
+  top: 79px;
+  left: 0;
+  width: 100%;
+  height: calc(100vh - 79px);
+
+  &Top {
+    background-color: #1e2222;
+    border-top: 1px solid rgba($white, 0.2);
+  }
+  &__inner {
+    padding: 65px 0 200px;
+    &-side {
+      width: 100%;
+      position: relative;
+    }
+    &-tabs {
+      width: 300px;
+      display: flex;
+      flex-direction: column;
+    }
+  }
+  &Tab {
+    width: 100%;
+    padding: 20px 16px;
+    cursor: pointer;
+    border-bottom: 1px solid transparent;
+    box-sizing: border-box;
+    // &.active {
+    //   border-color: $white;
+    //   background-color: rgba($white, 0.1);
+    //   .dropTab {
+    //     &__main {
+    //       opacity: 1;
+    //       visibility: visible;
+    //     }
+    //   }
+    // }
+    &:hover {
+      border-color: $white;
+      background-color: rgba($white, 0.1);
+      .dropTab {
+        &__main {
+          opacity: 1;
+          visibility: visible;
+          z-index: 3;
+        }
+      }
+    }
+    &__title {
+      h6 {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        svg {
+          position: absolute;
+          top: 50%;
+          right: 10px;
+          width: 15px;
+          height: 15px;
+          transform: translateY(-50%) rotate(270deg);
+        }
+      }
+    }
+    &__main {
+      position: absolute;
+      top: -10px;
+      right: 0;
+      width: calc(100% - 320px);
+      max-width: 840px;
+      opacity: 0;
+      transition: 0.3s ease;
+      visibility: hidden;
+      background-color: #1e2222;
+      padding: 10px;
+      box-sizing: border-box;
+      &-content {
+        max-width: 490px;
+        padding-left: 20px;
+      }
+      h4 {
+        margin-bottom: 30px;
+      }
+      p {
+        margin-bottom: 30px;
+      }
+    }
+    &__row {
+      display: flex;
+      justify-content: space-between;
+    }
+    &__col {
+      display: flex;
+      flex-direction: column;
+      h6 {
+        font-weight: 600;
+        color: $white;
+        margin-bottom: 20px;
+      }
+      a {
+        margin-bottom: 20px;
+        font-weight: 300;
+        &:hover {
+          color: #4087e5;
+        }
+        &:last-child {
+          margin: 0;
+        }
+      }
+    }
+  }
+}
+// 1380px
+@mixin header-xxxlg-xxxxlg {
+  .header {
+    &__inner {
+      &-logo {
+        width: 100px;
+        margin-right: 10px;
+      }
+      &-buttons {
+        .ct {
+          margin-right: 24px;
+        }
+      }
+    }
+  }
+  .drop {
+    &__inner {
+      padding: 50px 0 150px;
+      &-tabs {
+        width: 250px;
+      }
+    }
+    &Tab {
+      padding: 15px 10px;
+      &__title {
+        h6 {
+          svg {
+            right: 6px;
+          }
+        }
+      }
+      &__main {
+        width: calc(100% - 265px);
+        max-width: 760px;
+        h4 {
+          margin-bottom: 15px;
+        }
+        p {
+          margin-bottom: 20px;
+        }
+      }
+      &__col {
+        h6 {
+          margin-bottom: 15px;
+        }
+        a {
+          font-size: 14px;
+          margin-bottom: 15px;
+        }
+      }
+    }
+  }
+}
+
+@mixin header-lg-xlg {
+  .header {
+    &.sticky {
+      .header__inner {
+        padding: 15px 0;
+      }
+      .nav {
+        top: 55px;
+        height: calc(100% - 55px);
+        &__inner {
+          background-color: #1e2222;
+        }
+      }
+    }
+    .auto__container {
+      padding: 0 32px;
+    }
+    &__inner {
+      padding: 20px 0;
+      height: 64px;
+      &-buttons {
+        .switch__row {
+          display: none;
+        }
+        .customSelect {
+          display: none;
+        }
+        .ct {
+          display: none;
+        }
+        .button {
+          display: none;
+        }
+      }
+      &-logo {
+        width: 95px;
+      }
+      &-link {
+        display: none;
+      }
+      &-phone {
+        display: none;
+      }
+    }
+  }
+  .drop {
+    display: none;
+  }
+}
+@mixin header-sm-md {
+  .header {
+    .auto__container {
+      padding: 0 22px;
+    }
+  }
+}

@@ -1,0 +1,342 @@
+.article {
+  padding: 100px 0 0;
+  &Head {
+    width: 100%;
+    max-width: 700px;
+    padding-bottom: 100px;
+    &__row {
+      display: flex;
+      justify-content: space-between;
+    }
+    &__item {
+      width: calc(25% - 8px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: $black2;
+      transition: 0.3s ease;
+      padding-bottom: 12px;
+      position: relative;
+      cursor: pointer;
+      font-size: 16px;
+      line-height: 100%;
+      font-weight: 500;
+      &:hover {
+        color: $white;
+        &::before {
+          opacity: 0;
+        }
+        &::after {
+          opacity: 1;
+        }
+      }
+      &.active {
+        color: $white;
+        &::before {
+          opacity: 0;
+        }
+        &::after {
+          opacity: 1;
+        }
+      }
+      &::before {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background-color: $black2;
+        content: "";
+        transition: 0.3s ease;
+      }
+      &::after {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background-color: $black2;
+        content: "";
+        transition: 0.3s ease;
+        background: linear-gradient(90deg, #3578e2 0%, #4d97e8 100%);
+        opacity: 0;
+      }
+    }
+  }
+  &Nav {
+    width: 170px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 2;
+    background-color: $black;
+    &__list {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 50px;
+      &-item {
+        padding: 12px;
+        display: flex;
+        justify-content: flex-start;
+        text-align: start;
+        color: rgba($white, 0.5);
+        position: relative;
+        cursor: pointer;
+        transition: 0.3s ease;
+        font-size: 16px;
+        line-height: 100%;
+        font-weight: 500;
+        &:hover {
+          color: $white;
+          &::before {
+            opacity: 0;
+          }
+          &::after {
+            opacity: 1;
+          }
+        }
+        &.active {
+          color: $white;
+          &::before {
+            opacity: 0;
+          }
+          &::after {
+            opacity: 1;
+          }
+        }
+        &::before {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 4px;
+          height: 100%;
+          content: "";
+          background-color: rgba($white, 0.5);
+          transition: 0.3s ease;
+        }
+        &::after {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 4px;
+          height: 100%;
+          content: "";
+          transition: 0.3s ease;
+          background: linear-gradient(90deg, #3578e2 0%, #4d97e8 100%);
+          opacity: 0;
+        }
+        h6 {
+          margin: 0 !important;
+        }
+      }
+    }
+    .button {
+      width: 100%;
+    }
+  }
+  &__inner {
+    position: relative;
+    &-content {
+      &.big {
+        width: calc(100% - 190px);
+        max-width: 970px;
+        .article {
+          &__inner {
+            &-item {
+              max-width: unset;
+              margin-bottom: 100px;
+              &:last-child {
+                margin: 0;
+              }
+            }
+          }
+        }
+      }
+    }
+    &-item {
+      margin-bottom: 100px;
+      max-width: 967px;
+      &:last-child {
+        margin: 0;
+      }
+      h3 {
+        margin-bottom: 40px;
+      }
+    }
+    h2 {
+      margin-bottom: 40px;
+    }
+    p {
+      margin-bottom: 40px;
+      &:last-child {
+        margin: 0;
+      }
+    }
+    h6 {
+      margin-bottom: 12px;
+    }
+    ul {
+      padding-left: 10px;
+      display: flex;
+      flex-direction: column;
+      border-left: 3px solid $primary;
+      position: relative;
+      li {
+        padding-left: 24px;
+        position: relative;
+        &::before {
+          position: absolute;
+          top: 13px;
+          left: 9px;
+          width: 3px;
+          height: 3px;
+          border-radius: 50%;
+          background-color: $white;
+          content: "";
+        }
+      }
+    }
+  }
+  &Item {
+    padding-bottom: 50px;
+    &.sm {
+      .articleItem {
+        &__inner {
+          width: calc(100% - 190px);
+          max-width: 970px;
+        }
+      }
+    }
+    &__inner {
+      max-width: 970px;
+    }
+    &__inner {
+      &-foot {
+        padding-top: 40px;
+        display: none;
+      }
+    }
+    h2 {
+      margin-bottom: 40px;
+    }
+    p {
+      margin-bottom: 40px;
+      &:last-of-type {
+        margin: 0;
+      }
+    }
+    h6 {
+      margin-bottom: 12px;
+    }
+    ul {
+      padding-left: 10px;
+      display: flex;
+      flex-direction: column;
+      border-left: 3px solid $primary;
+      position: relative;
+      li {
+        padding-left: 24px;
+        position: relative;
+        &::before {
+          position: absolute;
+          top: 13px;
+          left: 9px;
+          width: 3px;
+          height: 3px;
+          border-radius: 50%;
+          background-color: $white;
+          content: "";
+        }
+      }
+    }
+  }
+}
+// 750px
+@mixin article-sm-md {
+  .article {
+    padding: 60px 0 0;
+    &__inner {
+      &-item {
+        margin-bottom: 50px;
+        h2, h3 {
+          font-size: 28px;
+          line-height: 120%;
+          margin-bottom: 30px;
+        }
+      }
+    }
+    &Nav {
+      position: static;
+      margin-bottom: 50px;
+    }
+    &Head {
+      width: calc(100% + 44px);
+      margin: 0 -22px;
+      overflow-x: auto;
+      padding: 0 0 50px;
+      &__row {
+        min-width: 740px;
+        padding: 0 22px;
+      }
+      &__item {
+        max-width: 160px;
+      }
+    }
+    &Item {
+      &.sm {
+        .articleItem {
+          &__inner {
+            width: 100%;
+            max-width: unset;
+          }
+        }
+      }
+      h2 {
+        margin-bottom: 24px;
+      }
+    }
+  }
+}
+
+// 540px
+@mixin article-xsm-sm {
+  .article {
+    padding: 50px 0 0;
+    &Item {
+      &__inner {
+        &-foot {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding-top: 40px;
+        }
+      }
+      h2 {
+        margin-bottom: 24px;
+      }
+      p {
+        margin-bottom: 24px;
+      }
+      ul {
+        border: unset;
+        padding: 0;
+        margin-bottom: 20px;
+        li {
+          padding-left: 18px;
+          border-left: 3px solid $primary;
+          line-height: 180%;
+          margin-bottom: 20px;
+          &::before {
+            display: none;
+          }
+        }
+      }
+      .loadMore {
+        display: flex;
+        justify-content: center;
+        margin: 0 auto;
+      }
+    }
+  }
+}
