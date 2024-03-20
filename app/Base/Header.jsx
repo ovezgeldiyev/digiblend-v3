@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import LanguageSelect from "./LanguageSelect";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
@@ -13,8 +13,13 @@ const languageList = [
 
 export default function Header({ item, servicesMenu }) {
   // console.log(servicesMenu)
+  const dropBtnRef = useRef(null);
   const [menu, setMenu] = useState(false);
+  const [drop, setDrop] = useState(false);
+  const [dropTab, setDropTab] = useState("overview");
   const [menuType, setMenuType] = useState("main");
+  const [mobNav, setMobNav] = useState(false);
+  const [mobTab, setMobTab] = useState(null);
   const [lang, setLang] = useState({
     id: "1",
     value: "NL",
@@ -49,7 +54,19 @@ export default function Header({ item, servicesMenu }) {
   }, []);
   return (
     <>
-      <header className="header" id="header">
+      <header
+        className={"header " + (drop ? "active " : "")}
+        id="header"
+        onMouseOver={(e) => {
+          if (dropBtnRef.current && dropBtnRef.current.contains(e.target)) {
+            setDrop(true);
+            setDropTab("overview");
+          } else {
+            setDrop(false);
+            setDropTab("overview");
+          }
+        }}
+      >
         <div className="auto__container">
           <div className="header__inner">
             <div className="header__inner-side">
@@ -70,7 +87,10 @@ export default function Header({ item, servicesMenu }) {
             >
               <div className="nav__inner">
                 <ul>
-                  <li className="dropBtn">
+                  <li
+                    className={"dropBtn " + (drop ? "active" : "")}
+                    ref={dropBtnRef}
+                  >
                     <a href="#">What we do</a>
                   </li>
                   <li>
@@ -134,87 +154,151 @@ export default function Header({ item, servicesMenu }) {
                   //   ))}
                   // </div>
                   <div className="nav__inner-main ">
-                    <div className="navItem active">
-                      <div className="navItem__title">
+                    <div className={"navItem " + (mobNav ? "active" : "")}>
+                      <div
+                        className="navItem__title"
+                        onClick={() => {
+                          setMobNav(!mobNav);
+                          setMobTab(null);
+                        }}
+                      >
                         <h3>What we do</h3>
                         <p>Our services for business growth</p>
                         {chevronBottom}
                       </div>
-                      <div className="navItem__tabs">
-                        <div className="navItem__tab">
-                          <div className="navItem__tab-head">
-                            <h5>Design</h5>
-                            <span></span>
+                      {mobNav && (
+                        <div className="navItem__tabs">
+                          <div className="navItem__tab">
+                            <div
+                              className={
+                                "navItem__tab-head " +
+                                (mobTab === "design" ? "active" : "")
+                              }
+                              onClick={() => {
+                                if (mobTab === "design") {
+                                  setMobTab(null);
+                                } else {
+                                  setMobTab("design");
+                                }
+                              }}
+                            >
+                              <h5>Design</h5>
+                              <span></span>
+                            </div>
+                            {mobTab === "design" && (
+                              <div className="navItem__tab-body">
+                                <a href="#">Web design</a>
+                                <a href="#">Software design</a>
+                                <a href="#">App design</a>
+                                <a href="#">Brand identity</a>
+                              </div>
+                            )}
                           </div>
-                          {/* <div className="navItem__tab-body">
-                            <a href="#">Web design</a>
-                            <a href="#">Software design</a>
-                            <a href="#">App design</a>
-                            <a href="#">Brand identity</a>
-                          </div> */}
+                          <div className="navItem__tab">
+                            <div
+                              className={
+                                "navItem__tab-head " +
+                                (mobTab === "dev" ? "active" : "")
+                              }
+                              onClick={() => {
+                                if (mobTab === "dev") {
+                                  setMobTab(null);
+                                } else {
+                                  setMobTab("dev");
+                                }
+                              }}
+                            >
+                              <h5>Development</h5>
+                              <span></span>
+                            </div>
+                            {mobTab === "dev" && (
+                              <div className="navItem__tab-body">
+                                <a href="#">Web development</a>
+                                <a href="#">Software development</a>
+                                <a href="#">App development</a>
+                                <a href="#">Headless CMS</a>
+                              </div>
+                            )}
+                          </div>
+                          <div className="navItem__tab">
+                            <div
+                              className={
+                                "navItem__tab-head " +
+                                (mobTab === "data" ? "active" : "")
+                              }
+                              onClick={() => {
+                                if (mobTab === "data") {
+                                  setMobTab(null);
+                                } else {
+                                  setMobTab("data");
+                                }
+                              }}
+                            >
+                              <h5>Data & Analytics</h5>
+                              <span></span>
+                            </div>
+                            {mobTab === "data" && (
+                              <div className="navItem__tab-body">
+                                <a href="#">Data collection</a>
+                                <a href="#">Data storage</a>
+                                <a href="#">Data analysis</a>
+                                <a href="#">Dashboarding</a>
+                              </div>
+                            )}
+                          </div>
+                          <div className="navItem__tab">
+                            <div
+                              className={
+                                "navItem__tab-head " +
+                                (mobTab === "market" ? "active" : "")
+                              }
+                              onClick={() => {
+                                if (mobTab === "market") {
+                                  setMobTab(null);
+                                } else {
+                                  setMobTab("market");
+                                }
+                              }}
+                            >
+                              <h5>Marketing</h5>
+                              <span></span>
+                            </div>
+                            {mobTab === "market" && (
+                              <div className="navItem__tab-body">
+                                <a href="#">Search Engine Advertising</a>
+                                <a href="#">Social Advertising</a>
+                                <a href="#">Display Advertising</a>
+                                <a href="#">B2B Leadgeneration</a>
+                              </div>
+                            )}
+                          </div>
                         </div>
-                        <div className="navItem__tab">
-                          <div className="navItem__tab-head">
-                            <h5>Development</h5>
-                            <span></span>
-                          </div>
-                          {/* <div className="navItem__tab-body">
-                            <a href="#">Web development</a>
-                            <a href="#">Software development</a>
-                            <a href="#">App development</a>
-                            <a href="#">Headless CMS</a>
-                          </div> */}
-                        </div>
-                        <div className="navItem__tab">
-                          <div className="navItem__tab-head active">
-                            <h5>Data & Analytics</h5>
-                            <span></span>
-                          </div>
-                          <div className="navItem__tab-body">
-                            <a href="#">Data collection</a>
-                            <a href="#">Data storage</a>
-                            <a href="#">Data analysis</a>
-                            <a href="#">Dashboarding</a>
-                          </div>
-                        </div>
-                        <div className="navItem__tab">
-                          <div className="navItem__tab-head">
-                            <h5>Marketing</h5>
-                            <span></span>
-                          </div>
-                          {/* <div className="navItem__tab-body">
-                            <a href="#">Search Engine Advertising</a>
-                            <a href="#">Social Advertising</a>
-                            <a href="#">Display Advertising</a>
-                            <a href="#">B2B Leadgeneration</a>
-                          </div> */}
-                        </div>
-                      </div>
+                      )}
                     </div>
-                    <div className="navItem">
+                    <Link href="#" className="navItem">
                       <div className="navItem__title">
                         <h3>Who we are</h3>
                         <p>Making impact through technology</p>
                       </div>
-                    </div>
-                    <div className="navItem">
+                    </Link>
+                    <Link href="#" className="navItem">
                       <div className="navItem__title">
                         <h3>Insights</h3>
                         <p>Sharing knowledge for progress</p>
                       </div>
-                    </div>
-                    <div className="navItem">
+                    </Link>
+                    <Link href="#" className="navItem">
                       <div className="navItem__title">
                         <h3>Careers</h3>
                         <p>Join our team</p>
                       </div>
-                    </div>
-                    <div className="navItem">
+                    </Link>
+                    <Link href="#" className="navItem">
                       <div className="navItem__title">
                         <h3>Contact Us</h3>
                         <p>We are curious about your challenges</p>
                       </div>
-                    </div>
+                    </Link>
                   </div>
                 )}
                 {menuType === "services" && (
@@ -331,6 +415,8 @@ export default function Header({ item, servicesMenu }) {
                 className={"burger last " + (menu ? "active" : "")}
                 onClick={() => {
                   setMenu(!menu);
+                  setMobNav(false);
+                  setMobTab(null);
                 }}
               >
                 <span></span>
@@ -340,100 +426,131 @@ export default function Header({ item, servicesMenu }) {
           </div>
         </div>
       </header>
-      <div className="drop">
-        <div className="dropTop">
-          <div className="auto__container">
-            <div className="drop__inner">
-              <div className="drop__inner-side">
-                <div className="drop__inner-tabs">
-                  <div className="dropTab active">
-                    <div className="dropTab__title">
-                      <h6>Overview {chevronBottom}</h6>
-                    </div>
-                    <div className="dropTab__main">
-                      <div className="dropTab__main-content">
-                        <h4>Making differences through technology.</h4>
-                        <p>
-                          Explore our diverse array of solutions, from design
-                          and development to data-analytics and marketing.
-                          Tailored to unlock your business's growth potential.
-                        </p>
-                        <a href="#" className="button secondary">
-                          Discover our solutions
-                        </a>
+      {drop && (
+        <div
+          className="drop"
+          onMouseOver={(e) => {
+            if (e.target === e.currentTarget) {
+              setDrop(false);
+              setDropTab("overview");
+            }
+          }}
+        >
+          <div className="dropTop">
+            <div className="auto__container">
+              <div className="drop__inner">
+                <div className="drop__inner-side">
+                  <div className="drop__inner-tabs">
+                    <div
+                      className={
+                        "dropTab " + (dropTab === "overview" ? "active" : "")
+                      }
+                    >
+                      <div
+                        className="dropTab__title"
+                        onMouseOver={() => setDropTab("overview")}
+                      >
+                        <h6>Overview {chevronBottom}</h6>
                       </div>
-                    </div>
-                  </div>
-                  <div className="dropTab">
-                    <div className="dropTab__title">
-                      <h6>Services {chevronBottom}</h6>
-                    </div>
-                    <div className="dropTab__main">
-                      <div className="dropTab__row">
-                        <div className="dropTab__col">
-                          <h6>Design</h6>
-                          <a href="#">Web design</a>
-                          <a href="#">Software design</a>
-                          <a href="#">App design</a>
-                          <a href="#">Brand identity</a>
-                        </div>
-                        <div className="dropTab__col">
-                          <h6>Development</h6>
-                          <a href="#">Web development</a>
-                          <a href="#">Software development</a>
-                          <a href="#">App development</a>
-                          <a href="#">Headless CMS</a>
-                        </div>
-                        <div className="dropTab__col">
-                          <h6>Data & Analytics</h6>
-                          <a href="#">Data collection</a>
-                          <a href="#">Data storage</a>
-                          <a href="#">Data analysis</a>
-                          <a href="#">Dashboarding</a>
-                        </div>
-                        <div className="dropTab__col">
-                          <h6>Marketing</h6>
-                          <a href="#">Search engine advertising</a>
-                          <a href="#">Social advertising</a>
-                          <a href="#">Display advertising</a>
-                          <a href="#">B2B leadgeneration</a>
+                      <div className="dropTab__main">
+                        <div className="dropTab__main-content">
+                          <h4>Making differences through technology.</h4>
+                          <p>
+                            Explore our diverse array of solutions, from design
+                            and development to data-analytics and marketing.
+                            Tailored to unlock your business's growth potential.
+                          </p>
+                          <a href="#" className="button secondary">
+                            Discover our solutions
+                          </a>
                         </div>
                       </div>
                     </div>
-                  </div>
-                  <div className="dropTab">
-                    <div className="dropTab__title">
-                      <h6>Request Service {chevronBottom}</h6>
+                    <div
+                      className={
+                        "dropTab " + (dropTab === "services" ? "active" : "")
+                      }
+                    >
+                      <div
+                        className="dropTab__title"
+                        onMouseOver={() => setDropTab("services")}
+                      >
+                        <h6>Services {chevronBottom}</h6>
+                      </div>
+                      <div className="dropTab__main">
+                        <div className="dropTab__row">
+                          <div className="dropTab__col">
+                            <h6>Design</h6>
+                            <a href="#">Web design</a>
+                            <a href="#">Software design</a>
+                            <a href="#">App design</a>
+                            <a href="#">Brand identity</a>
+                          </div>
+                          <div className="dropTab__col">
+                            <h6>Development</h6>
+                            <a href="#">Web development</a>
+                            <a href="#">Software development</a>
+                            <a href="#">App development</a>
+                            <a href="#">Headless CMS</a>
+                          </div>
+                          <div className="dropTab__col">
+                            <h6>Data & Analytics</h6>
+                            <a href="#">Data collection</a>
+                            <a href="#">Data storage</a>
+                            <a href="#">Data analysis</a>
+                            <a href="#">Dashboarding</a>
+                          </div>
+                          <div className="dropTab__col">
+                            <h6>Marketing</h6>
+                            <a href="#">Search engine advertising</a>
+                            <a href="#">Social advertising</a>
+                            <a href="#">Display advertising</a>
+                            <a href="#">B2B leadgeneration</a>
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                    <div className="dropTab__main">
-                      <div className="dropTab__row">
-                        <div className="dropTab__col">
-                          <h6>Design</h6>
-                          <a href="#">Web design</a>
-                          <a href="#">Software design</a>
-                          <a href="#">App design</a>
-                          <a href="#">Brand identity</a>
-                        </div>
-                        <div className="dropTab__col">
-                          <h6>Development</h6>
-                          <a href="#">Web development</a>
-                          <a href="#">Software development</a>
-                          <a href="#">App development</a>
-                          <a href="#">Headless CMS</a>
-                        </div>
-                        <div className="dropTab__col">
-                          <h6>Data & Analytics</h6>
-                          <a href="#">Data collection</a>
-                          <a href="#">Data storage</a>
-                          <a href="#">Data analysis</a>
-                          <a href="#">Dashboarding</a>
-                        </div>
-                        <div className="dropTab__col">
-                          <h6>Marketing</h6>
-                          <a href="#">Search engine advertising</a>
-                          <a href="#">Social advertising</a>
-                          <a href="#">Display advertising</a>
-                          <a href="#">B2B leadgeneration</a>
+                    <div
+                      className={
+                        "dropTab " + (dropTab === "request" ? "active" : "")
+                      }
+                    >
+                      <div
+                        className="dropTab__title"
+                        onMouseOver={() => setDropTab("request")}
+                      >
+                        <h6>Request Service {chevronBottom}</h6>
+                      </div>
+                      <div className="dropTab__main">
+                        <div className="dropTab__row">
+                          <div className="dropTab__col">
+                            <h6>Design</h6>
+                            <a href="#">Web design</a>
+                            <a href="#">Software design</a>
+                            <a href="#">App design</a>
+                            <a href="#">Brand identity</a>
+                          </div>
+                          <div className="dropTab__col">
+                            <h6>Development</h6>
+                            <a href="#">Web development</a>
+                            <a href="#">Software development</a>
+                            <a href="#">App development</a>
+                            <a href="#">Headless CMS</a>
+                          </div>
+                          <div className="dropTab__col">
+                            <h6>Data & Analytics</h6>
+                            <a href="#">Data collection</a>
+                            <a href="#">Data storage</a>
+                            <a href="#">Data analysis</a>
+                            <a href="#">Dashboarding</a>
+                          </div>
+                          <div className="dropTab__col">
+                            <h6>Marketing</h6>
+                            <a href="#">Search engine advertising</a>
+                            <a href="#">Social advertising</a>
+                            <a href="#">Display advertising</a>
+                            <a href="#">B2B leadgeneration</a>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -443,7 +560,7 @@ export default function Header({ item, servicesMenu }) {
             </div>
           </div>
         </div>
-      </div>
+      )}
     </>
   );
 }

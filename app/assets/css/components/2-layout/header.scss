@@ -13,7 +13,7 @@
   &.sticky {
     background-color: #1e2222;
     .header__inner {
-      padding: 12px 0;
+      // padding: 12px 0;
       &-phone {
         span {
           background-color: #1e2222;
@@ -105,12 +105,12 @@
     }
   }
   &__inner {
-    padding: 20px 0;
+    // padding: 20px 0;
     display: flex;
     align-items: center;
     justify-content: space-between;
     transition: 0.3s ease;
-    height: 80px;
+    // height: 80px;
     box-sizing: border-box;
     &-side {
       display: flex;
@@ -207,6 +207,7 @@
   position: fixed;
   z-index: 10000;
   top: 79px;
+  // top: 54px;
   left: 0;
   width: 100%;
   height: calc(100vh - 79px);
@@ -243,7 +244,7 @@
     //     }
     //   }
     // }
-    &:hover {
+    &.active {
       border-color: $white;
       background-color: rgba($white, 0.1);
       .dropTab {
@@ -273,13 +274,12 @@
       position: absolute;
       top: -10px;
       right: 0;
-      width: calc(100% - 320px);
-      max-width: 840px;
+      width: calc(100% - 300px);
       opacity: 0;
       transition: 0.3s ease;
       visibility: hidden;
       background-color: #1e2222;
-      padding: 10px;
+      padding: 10px 10px 10px 80px;
       box-sizing: border-box;
       &-content {
         max-width: 490px;
@@ -349,8 +349,8 @@
         }
       }
       &__main {
-        width: calc(100% - 265px);
-        max-width: 760px;
+        width: calc(100% - 250px);
+        padding-left: 50px;
         h4 {
           margin-bottom: 15px;
         }
@@ -375,7 +375,7 @@
   .header {
     &.sticky {
       .header__inner {
-        padding: 15px 0;
+        // padding: 15px 0;
       }
       .nav {
         top: 55px;

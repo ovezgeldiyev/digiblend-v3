@@ -10,6 +10,7 @@ export default function Footer({ item, totalJobs }) {
   }, []);
   const [uniqFooter, setUniqFooter] = useState(false);
   const [mobile, setMobile] = useState(false);
+  const [mobTab, setMobTab] = useState(null);
   useEffect(() => {
     if (window.innerWidth < 541) {
       setMobile(true);
@@ -44,15 +45,28 @@ export default function Footer({ item, totalJobs }) {
               </div>
               <div className="footerMob__links">
                 <div className="footerLink">
-                  <h5>What we do {chevronBottom}</h5>
-                  {/* <div className="footerLink__drop">
-                    <div className="footerLink__drop-links">
-                      <a href="#">Design</a>
-                      <a href="#">Development</a>
-                      <a href="#"> Data & Analytics</a>
-                      <a href="#">Marketing</a>
+                  <h5
+                    className={mobTab === "what_we_do" ? "active" : ""}
+                    onClick={() => {
+                      if (mobTab === "what_we_do") {
+                        setMobTab(null);
+                      } else {
+                        setMobTab("what_we_do");
+                      }
+                    }}
+                  >
+                    What we do {chevronBottom}
+                  </h5>
+                  {mobTab === "what_we_do" && (
+                    <div className="footerLink__drop">
+                      <div className="footerLink__drop-links">
+                        <a href="#">Design</a>
+                        <a href="#">Development</a>
+                        <a href="#"> Data & Analytics</a>
+                        <a href="#">Marketing</a>
+                      </div>
                     </div>
-                  </div> */}
+                  )}
                 </div>
                 <Link href="#" className="footerLink">
                   <h5>Insights</h5>
@@ -61,18 +75,31 @@ export default function Footer({ item, totalJobs }) {
                   <h5>Careers</h5>
                 </Link>
                 <div className="footerLink">
-                  <h5>Contact Us {chevronBottom}</h5>
-                  {/* <div className="footerLink__drop">
-                    <p>
-                      digiblend B.V. <br />
-                      Papaverhof 16B <br />
-                      1032LX, Amsterdam <br />
-                      hello@digiblend.nl
-                    </p>
-                    <a href="#" className="button primary">
-                      085-8428000
-                    </a>
-                  </div> */}
+                  <h5
+                    className={mobTab === "contact" ? "active" : ""}
+                    onClick={() => {
+                      if (mobTab === "contact") {
+                        setMobTab(null);
+                      } else {
+                        setMobTab("contact");
+                      }
+                    }}
+                  >
+                    Contact Us {chevronBottom}
+                  </h5>
+                  {mobTab === "contact" && (
+                    <div className="footerLink__drop">
+                      <p>
+                        digiblend B.V. <br />
+                        Papaverhof 16B <br />
+                        1032LX, Amsterdam <br />
+                        hello@digiblend.nl
+                      </p>
+                      <a href="#" className="button primary">
+                        085-8428000
+                      </a>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>

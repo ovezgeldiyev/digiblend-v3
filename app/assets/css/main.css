@@ -1252,9 +1252,6 @@ main {
 .header.sticky {
   background-color: #1e2222;
 }
-.header.sticky .header__inner {
-  padding: 12px 0;
-}
 .header.sticky .header__inner-phone span {
   background-color: #1e2222;
 }
@@ -1351,7 +1348,6 @@ main {
           transform: rotate(-180deg);
 }
 .header__inner {
-  padding: 20px 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1363,7 +1359,6 @@ main {
           justify-content: space-between;
   -webkit-transition: 0.3s ease;
   transition: 0.3s ease;
-  height: 80px;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
 }
@@ -1524,11 +1519,11 @@ main {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
 }
-.dropTab:hover {
+.dropTab.active {
   border-color: #fff;
   background-color: rgba(255, 255, 255, 0.1);
 }
-.dropTab:hover .dropTab__main {
+.dropTab.active .dropTab__main {
   opacity: 1;
   visibility: visible;
   z-index: 3;
@@ -1557,14 +1552,13 @@ main {
   position: absolute;
   top: -10px;
   right: 0;
-  width: calc(100% - 320px);
-  max-width: 840px;
+  width: calc(100% - 300px);
   opacity: 0;
   -webkit-transition: 0.3s ease;
   transition: 0.3s ease;
   visibility: hidden;
   background-color: #1e2222;
-  padding: 10px;
+  padding: 10px 10px 10px 80px;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
 }
@@ -1632,13 +1626,32 @@ main {
           align-items: center;
 }
 .nav__inner li {
+  padding: 20px 0;
+  height: 80px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   margin-left: 30px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 .nav__inner li:first-child {
   margin: 0;
 }
 .nav__inner li.hidden {
   display: none;
+}
+.nav__inner li.dropBtn.active a::before {
+  width: calc(100% - 10px);
+}
+.nav__inner li.dropBtn a::before {
+  opacity: 1;
 }
 .nav__inner li a {
   color: #fff;
@@ -4416,8 +4429,8 @@ main {
     right: 6px;
   }
   .dropTab__main {
-    width: calc(100% - 265px);
-    max-width: 760px;
+    width: calc(100% - 250px);
+    padding-left: 50px;
   }
   .dropTab__main h4 {
     margin-bottom: 15px;
@@ -4659,9 +4672,6 @@ main {
     padding-top: 65px;
   }
 
-  .header.sticky .header__inner {
-    padding: 15px 0;
-  }
   .header.sticky .nav {
     top: 55px;
     height: calc(100% - 55px);
@@ -4981,6 +4991,9 @@ main {
     padding-bottom: 20px;
     padding: 18px 24px 0 24px;
   }
+  .navItem:first-child {
+    padding-top: 40px;
+  }
   .navItem.active {
     background-color: #1e2222;
   }
@@ -4995,6 +5008,7 @@ main {
     padding-bottom: 18px;
     border-bottom: 0.5px solid #fff;
     position: relative;
+    cursor: pointer;
   }
   .navItem__title h3 {
     font-size: 28px;
@@ -5023,6 +5037,7 @@ main {
   .navItem__tab {
     padding: 18px 0;
     border-bottom: 0.5px solid #fff;
+    cursor: pointer;
   }
   .navItem__tab:last-child {
     border-color: transparent;
@@ -5099,6 +5114,10 @@ main {
   }
   .navItem__tab-body a:last-child {
     margin: 0;
+  }
+  .navItem__tab-body a:hover {
+    opacity: 1;
+    color: #4087e5;
   }
   .nav .customSelect {
     display: block;
@@ -6335,6 +6354,10 @@ main {
     color: #fff;
     margin-bottom: 15px;
   }
+  .footerLink__drop-links a:hover {
+    opacity: 1;
+    color: #4188e5;
+  }
   .footerLink__drop-links a:last-child {
     margin: 0;
   }
@@ -6366,6 +6389,7 @@ main {
             align-items: center;
     -webkit-transition: 0.3s ease;
     transition: 0.3s ease;
+    cursor: pointer;
   }
   .footerLink h5:hover {
     color: #4188e5;
@@ -6505,21 +6529,6 @@ main {
   }
 }
 @media (max-width: 380px) {
-  .nav__inner {
-    padding: 90px 20px 60px;
-  }
-  .nav__inner-back {
-    top: 28px;
-    left: 20px;
-  }
-  .navItem {
-    margin-bottom: 30px;
-    padding-bottom: 20px;
-  }
-  .navItem h3 {
-    margin-bottom: 12px;
-  }
-
   .offer__inner-row {
     width: 100%;
     margin: 0 0 10px 0;

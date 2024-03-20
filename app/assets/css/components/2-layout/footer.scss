@@ -305,6 +305,10 @@
             line-height: 100%;
             color: $white;
             margin-bottom: 15px;
+            &:hover {
+              opacity: 1;
+              color: #4188e5;
+            }
             &:last-child {
               margin: 0;
             }
@@ -331,7 +335,8 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        transition: .3s ease;
+        transition: 0.3s ease;
+        cursor: pointer;
         &:hover {
           color: #4188e5;
         }
