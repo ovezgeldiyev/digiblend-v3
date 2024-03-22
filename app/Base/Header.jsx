@@ -522,35 +522,16 @@ export default function Header({ item, servicesMenu }) {
                         <h6>Request Service {chevronBottom}</h6>
                       </div>
                       <div className="dropTab__main">
-                        <div className="dropTab__row">
-                          <div className="dropTab__col">
-                            <h6>Design</h6>
-                            <a href="#">Web design</a>
-                            <a href="#">Software design</a>
-                            <a href="#">App design</a>
-                            <a href="#">Brand identity</a>
-                          </div>
-                          <div className="dropTab__col">
-                            <h6>Development</h6>
-                            <a href="#">Web development</a>
-                            <a href="#">Software development</a>
-                            <a href="#">App development</a>
-                            <a href="#">Headless CMS</a>
-                          </div>
-                          <div className="dropTab__col">
-                            <h6>Data & Analytics</h6>
-                            <a href="#">Data collection</a>
-                            <a href="#">Data storage</a>
-                            <a href="#">Data analysis</a>
-                            <a href="#">Dashboarding</a>
-                          </div>
-                          <div className="dropTab__col">
-                            <h6>Marketing</h6>
-                            <a href="#">Search engine advertising</a>
-                            <a href="#">Social advertising</a>
-                            <a href="#">Display advertising</a>
-                            <a href="#">B2B leadgeneration</a>
-                          </div>
+                        <div className="dropTab__main-content">
+                          <h4>Making differences through technology.</h4>
+                          <p>
+                            Explore our diverse array of solutions, from design
+                            and development to data-analytics and marketing.
+                            Tailored to unlock your business's growth potential.
+                          </p>
+                          <a href="#" className="button secondary">
+                            Discover our solutions
+                          </a>
                         </div>
                       </div>
                     </div>

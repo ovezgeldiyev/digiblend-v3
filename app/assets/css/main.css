@@ -1381,6 +1381,31 @@ main {
 .header__inner-buttons .ct {
   margin-right: 50px;
 }
+.header__inner-buttons .ct a {
+  color: #fff;
+  font-size: 16px;
+  line-height: 100%;
+  font-weight: 500;
+  position: relative;
+  padding: 10px;
+}
+.header__inner-buttons .ct a:hover::before {
+  opacity: 1;
+}
+.header__inner-buttons .ct a::before {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 30px;
+  height: 2px;
+  background-color: #4d97e8;
+  content: "";
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  -webkit-transition: 0.3s ease;
+  transition: 0.3s ease;
+  opacity: 0;
+}
 .header__inner-buttons .button {
   padding: 7px 25px;
   font-size: 14px;
@@ -1648,10 +1673,8 @@ main {
   display: none;
 }
 .nav__inner li.dropBtn.active a::before {
-  width: calc(100% - 10px);
-}
-.nav__inner li.dropBtn a::before {
   opacity: 1;
+  width: calc(100% - 10px);
 }
 .nav__inner li a {
   color: #fff;
@@ -2884,7 +2907,7 @@ main {
   padding: 120px 0 20px;
 }
 .hero.new {
-  margin-bottom: 100px;
+  margin-bottom: 140px;
 }
 .hero.new .hero__inner {
   padding: 100px 0 115px;
@@ -3238,14 +3261,14 @@ main {
   width: calc(50% - 10px);
   border-radius: 10px;
   background-color: #fff;
-  padding: 50px;
+  padding: 40px;
   color: #000;
   max-width: 600px;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
 }
 .heroForm__title {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   max-width: 450px;
 }
 .heroForm__title h5 {
@@ -3272,8 +3295,12 @@ main {
 .heroForm__foot {
   padding-top: 14px;
 }
+.heroForm__foot > p {
+  font-size: 14px;
+  line-height: 20px;
+}
 .heroForm .input__outer {
-  margin: 10px 0;
+  margin: 16px 0;
   width: 100%;
 }
 .heroForm .input__outer.sm {
@@ -3285,6 +3312,7 @@ main {
   font-size: 14px;
   line-height: 100%;
   color: #000000;
+  margin-bottom: 10px;
 }
 .heroForm .input input {
   background-color: #fff;
@@ -3307,22 +3335,47 @@ main {
 .heroForm .input input::placeholder {
   color: #c9c9c9;
 }
+.heroForm .input p {
+  top: calc(100% + 5px);
+  font-size: 14px;
+  line-height: 18px;
+}
+.heroForm .input span {
+  width: 16px;
+  height: 16px;
+  right: 12px;
+}
 .heroForm .check {
   -webkit-box-align: start;
       -ms-flex-align: start;
           align-items: flex-start;
-  margin-bottom: 30px;
+  margin-bottom: 35px;
 }
 .heroForm .check__box {
   margin-top: 5px;
 }
 .heroForm .check p {
   font-size: 14px;
+  line-height: 22px;
+}
+.heroForm .check .error {
+  width: 100%;
+  top: calc(100% + 3px);
+}
+.heroForm .check .error p {
+  width: calc(100% - 24px);
+  line-height: 100%;
+}
+.heroForm .check .error svg {
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
 }
 .heroForm .button {
   width: 100%;
   border-radius: 10px;
   padding: 12px;
+  margin-bottom: 10px;
 }
 .heroForm .button svg {
   width: 15px;
@@ -4480,10 +4533,10 @@ main {
     padding: 80px 0 20px;
   }
   .hero.new {
-    margin-bottom: 80px;
+    margin-bottom: 160px;
   }
   .hero.new .hero__inner {
-    padding: 80px 0 100px;
+    padding: 70px 0 100px;
   }
   .hero__inner {
     padding: 90px 0 240px;

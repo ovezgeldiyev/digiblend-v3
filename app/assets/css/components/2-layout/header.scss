@@ -121,6 +121,31 @@
       align-items: center;
       .ct {
         margin-right: 50px;
+        a {
+          color: $white;
+          font-size: 16px;
+          line-height: 100%;
+          font-weight: 500;
+          position: relative;
+          padding: 10px;
+          &:hover {
+            &::before {
+              opacity: 1;
+            }
+          }
+          &::before {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 30px;
+            height: 2px;
+            background-color: $primary;
+            content: "";
+            transform: translateX(-50%);
+            transition: 0.3s ease;
+            opacity: 0;
+          }
+        }
       }
       .button {
         padding: 7px 25px;

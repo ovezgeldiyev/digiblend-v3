@@ -4,7 +4,6 @@
     .hero__inner {
       padding-bottom: 220px;
     }
-
     .slider-arrow {
       display: none;
     }
@@ -15,7 +14,7 @@
     }
   }
   &.new {
-    margin-bottom: 100px;
+    margin-bottom: 140px;
     .hero {
       &__inner {
         padding: 100px 0 115px;
@@ -361,12 +360,12 @@
     width: calc(50% - 10px);
     border-radius: 10px;
     background-color: $white;
-    padding: 50px;
+    padding: 40px;
     color: $black;
     max-width: 600px;
     box-sizing: border-box;
     &__title {
-      margin-bottom: 20px;
+      margin-bottom: 10px;
       max-width: 450px;
       h5 {
         font-weight: 600;
@@ -386,10 +385,14 @@
     }
     &__foot {
       padding-top: 14px;
+      & > p {
+        font-size: 14px;
+        line-height: 20px;
+      }
     }
     .input {
       &__outer {
-        margin: 10px 0;
+        margin: 16px 0;
         width: 100%;
         &.sm {
           width: calc(50% - 6px);
@@ -400,6 +403,7 @@
           font-size: 14px;
           line-height: 100%;
           color: #000000;
+          margin-bottom: 10px;
         }
       }
       input {
@@ -411,21 +415,46 @@
           color: #c9c9c9;
         }
       }
+      p {
+        top: calc(100% + 5px);
+        font-size: 14px;
+        line-height: 18px;
+      }
+      span {
+        width: 16px;
+        height: 16px;
+        right: 12px;
+      }
     }
     .check {
       align-items: flex-start;
-      margin-bottom: 30px;
+      margin-bottom: 35px;
       &__box {
         margin-top: 5px;
       }
       p {
         font-size: 14px;
+        line-height: 22px;
+      }
+      .error {
+        width: 100%;
+        top: calc(100% + 3px);
+        p {
+          width: calc(100% - 24px);
+          line-height: 100%;
+        }
+        svg {
+          width: 16px;
+          height: 16px;
+          margin-right: 8px;
+        }
       }
     }
     .button {
       width: 100%;
       border-radius: 10px;
       padding: 12px;
+      margin-bottom: 10px;
       svg {
         width: 15px;
         height: 15px;
@@ -450,9 +479,9 @@
       }
     }
     &.new {
-      margin-bottom: 80px;
+      margin-bottom: 160px;
       .hero__inner {
-        padding: 80px 0 100px;
+        padding: 70px 0 100px;
       }
     }
     &__inner {

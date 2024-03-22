@@ -1,6 +1,12 @@
 "use client";
-import { arrowRight, checkIcon, pauseIcon, playIcon } from "@/app/Base/SVG";
-import Link from "next/link";
+import {
+  arrowRight,
+  attentIcon,
+  checkIcon,
+  pauseIcon,
+  playIcon,
+} from "@/app/Base/SVG";
+import FadeIn from "@/app/components/FadeIn";
 import React, { useState, useRef } from "react";
 import Slider from "react-slick";
 const sliderList = [
@@ -36,10 +42,41 @@ export default function Hero() {
         })}
       </Slider>
     </div>
-    
   );
 }
 const SliderItem = (props) => {
+  const [submited, setSubmited] = useState(false);
+  const [error, setError] = useState(false);
+  const [form, setForm] = useState({
+    name: "",
+    surname: "",
+    email: "",
+    phone: "",
+    company_name: "",
+    agree: false,
+  });
+  const updateForm = (data) => {
+    setForm((form) => ({ ...form, ...data }));
+  };
+  const onChangeInput = (input) => (e) => {
+    setForm((form) => ({ ...form, [input]: e.target.value }));
+  };
+  const btnClick = () => {
+    if (
+      form.email === "" ||
+      form.company_name === "" ||
+      form.name === "" ||
+      form.phone === "" ||
+      form.surname === "" ||
+      form.agree === false
+    )
+      setError(true);
+    else {
+      setError(false);
+      setSubmited(true);
+    }
+  };
+
   const video = useRef(null);
   const [videoState, setVideoState] = useState(true);
   const playBtnClick = () => {
@@ -77,6 +114,7 @@ const SliderItem = (props) => {
                   <div className="input">
                     <input type="tel" placeholder="Telefoon*" />
                     <button type="submit">Meer info</button>
+                    
                   </div>
                 </div>
                 <ul>
@@ -106,7 +144,7 @@ const SliderItem = (props) => {
                   </li>
                 </ul>
               </div>
-              <div className="heroForm">
+              <FadeIn delay={0.4} className="heroForm">
                 <div className="heroForm__title">
                   <h5>
                     Wij ondersteunen een maximaal aantal klanten per sector &
@@ -116,42 +154,120 @@ const SliderItem = (props) => {
                 <div className="heroForm__row">
                   <label className="input__outer sm">
                     <h6>Voornaam*</h6>
-                    <div className="input">
-                      <input type="text" placeholder="Hidde" />
+                    <div
+                      className={
+                        "input " + (form.name === "" && error ? "error" : "")
+                      }
+                    >
+                      <input
+                        type="text"
+                        value={form.name}
+                        onChange={onChangeInput("name")}
+                        placeholder="Hidde"
+                      />
+                      {form.name === "" && error && (
+                        <>
+                          <span className="error">{attentIcon}</span>
+                          <p>This field is required</p>
+                        </>
+                      )}
                     </div>
                   </label>
                   <label className="input__outer sm">
                     <h6>Achternaam*</h6>
-                    <div className="input">
-                      <input type="text" placeholder="Basten" />
+                    <div
+                      className={
+                        "input " + (form.surname === "" && error ? "error" : "")
+                      }
+                    >
+                      <input
+                        type="text"
+                        value={form.surname}
+                        onChange={onChangeInput("surname")}
+                        placeholder="Basten"
+                      />
+                      {form.surname === "" && error && (
+                        <>
+                          <span className="error">{attentIcon}</span>
+                          <p>This field is required</p>
+                        </>
+                      )}
                     </div>
                   </label>
                   <label className="input__outer">
                     <h6>Emailadres*</h6>
-                    <div className="input">
+                    <div
+                      className={
+                        "input " + (form.email === "" && error ? "error" : "")
+                      }
+                    >
                       <input
                         type="email"
+                        value={form.email}
+                        onChange={onChangeInput("email")}
                         placeholder="hidde@vanbruggenadvocaten.nl"
                       />
+                      {form.email === "" && error && (
+                        <>
+                          <span className="error">{attentIcon}</span>
+                          <p>This field is required</p>
+                        </>
+                      )}
                     </div>
                   </label>
                   <label className="input__outer">
                     <h6>Telefoon*</h6>
-                    <div className="input">
-                      <input type="tel" placeholder="+31 123 456 7894" />
+                    <div
+                      className={
+                        "input " + (form.phone === "" && error ? "error" : "")
+                      }
+                    >
+                      <input
+                        type="tel"
+                        value={form.phone}
+                        onChange={onChangeInput("phone")}
+                        placeholder="+31 123 456 7894"
+                      />
+                      {form.phone === "" && error && (
+                        <>
+                          <span className="error">{attentIcon}</span>
+                          <p>This field is required</p>
+                        </>
+                      )}
                     </div>
                   </label>
                   <label className="input__outer">
                     <h6>Naam Advocatenkantoor*</h6>
-                    <div className="input">
-                      <input type="text" placeholder="Van Bruggen Advocaten" />
+                    <div
+                      className={
+                        "input " +
+                        (form.company_name === "" && error ? "error" : "")
+                      }
+                    >
+                      <input
+                        type="text"
+                        value={form.company_name}
+                        onChange={onChangeInput("company_name")}
+                        placeholder="Van Bruggen Advocaten"
+                      />
+                      {form.company_name === "" && error && (
+                        <>
+                          <span className="error">{attentIcon}</span>
+                          <p>This field is required</p>
+                        </>
+                      )}
                     </div>
                   </label>
                 </div>
                 <div className="heroForm__foot">
                   <label className="check">
                     <div className="check__box">
-                      <input type="checkbox" />
+                      <input
+                        type="checkbox"
+                        onChange={(e) => {
+                          updateForm({ agree: e.target.checked });
+                        }}
+                      />
                       <span>{checkIcon}</span>
                     </div>
                     <p>
@@ -159,13 +275,29 @@ const SliderItem = (props) => {
                       persoonlijke informatie gebruikt om contact met mij op te
                       nemen.
                     </p>
+                    {form.agree === false && error && (
+                      <div className="error">
+                        {attentIcon}
+                        <p>This field is required</p>
+                      </div>
+                    )}
                   </label>
-                  <button type="button" className="button primary">
+                  <button
+                    type="button"
+                    className="button primary"
+                    onClick={btnClick}
+                  >
                     <span>Ik ontvang graag meer informatie</span>
                     {arrowRight}
                   </button>
+                  {submited && (
+                    <p>
+                      Thank you for contacting us! We will get back to you as
+                      soon as possible.
+                    </p>
+                  )}
                 </div>
-              </div>
+              </FadeIn>
             </div>
           </div>
         </div>

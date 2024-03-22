@@ -34,15 +34,12 @@
         &.active {
           a {
             &::before {
+              opacity: 1;
               width: calc(100% - 10px);
             }
           }
         }
-        a {
-          &::before {
-            opacity: 1;
-          }
-        }
+
       }
       a {
         color: $white;
