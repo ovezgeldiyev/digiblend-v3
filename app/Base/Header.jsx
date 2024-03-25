@@ -93,13 +93,13 @@ export default function Header({ item, servicesMenu }) {
                   >
                     <a href="#">What we do</a>
                   </li>
-                  <li>
+                  <li className={drop ? "gray" : ""}>
                     <a href="#">Who we are</a>
                   </li>
-                  <li>
+                  <li className={drop ? "gray" : ""}>
                     <a href="#">Insights</a>
                   </li>
-                  <li>
+                  <li className={drop ? "gray" : ""}>
                     <a href="#">Careers</a>
                   </li>
                   {/* {item.links.slice(0, 4).map((el, i) => (

@@ -1625,6 +1625,7 @@ main {
 }
 .dropTab__col a:hover {
   color: #4087e5;
+  font-weight: 600;
 }
 .dropTab__col a:last-child {
   margin: 0;
@@ -1671,6 +1672,9 @@ main {
 }
 .nav__inner li.hidden {
   display: none;
+}
+.nav__inner li.gray a {
+  color: #9e9fa3;
 }
 .nav__inner li.dropBtn.active a::before {
   opacity: 1;
@@ -2749,15 +2753,33 @@ main {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding: 40px 0 25px;
+  padding: 30px 0 15px;
+}
+.contact__inner-info-item {
+  margin: 12px 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 .contact__inner-info p {
   margin-right: 18px;
+  white-space: nowrap;
+}
+.contact__inner-info b {
+  margin: 0 18px;
+  display: block;
+  font-weight: 400;
 }
 .contact__inner-info .button {
+  min-width: 203px;
   margin: 0 !important;
 }
 .contact__inner-row {
@@ -4402,6 +4424,8 @@ main {
   position: relative;
   margin-bottom: 20px;
   overflow: hidden;
+  border-radius: 10px;
+  overflow: hidden;
 }
 .insightsItem__image::before {
   position: absolute;
@@ -5346,7 +5370,7 @@ main {
   }
   .heroContact {
     display: block;
-    margin-bottom: 38px;
+    margin-bottom: 48px;
   }
   .heroContact .input {
     display: -webkit-box;
@@ -5355,8 +5379,6 @@ main {
     -webkit-box-pack: end;
         -ms-flex-pack: end;
             justify-content: flex-end;
-    border-radius: 8px;
-    overflow: hidden;
   }
   .heroContact .input input {
     position: absolute;
@@ -5371,6 +5393,7 @@ main {
     line-height: 100%;
     color: #000000;
     background-color: #fff;
+    border-radius: 8px;
   }
   .heroContact .input input::-webkit-input-placeholder {
     color: #000000;
@@ -5403,9 +5426,18 @@ main {
     background: linear-gradient(90deg, #3578e2 0%, #4d97e8 100%);
     -webkit-transition: 0.3s ease;
     transition: 0.3s ease;
+    border-radius: 0 8px 8px 0;
   }
   .heroContact .input button:hover {
     opacity: 0.9;
+  }
+  .heroContact .input p {
+    font-size: 14px;
+    line-height: 140%;
+    color: #fff;
+    font-weight: 500;
+    background: unset;
+    -webkit-text-fill-color: unset;
   }
 
   .offer__inner {
@@ -6099,7 +6131,14 @@ main {
   }
 
   .contact__inner-info {
-    padding: 40px 0 15px;
+    padding: 30px 0 15px;
+  }
+  .contact__inner-info-item {
+    width: 100%;
+    max-width: 390px;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
   }
   .contact__inner .input {
     -webkit-transition: 0.3s ease;
@@ -6153,6 +6192,9 @@ main {
   }
   .hero .loadMore b {
     font-size: 20px;
+  }
+  .heroContact {
+    margin-bottom: 56px;
   }
 
   .offer__inner {
@@ -6375,6 +6417,28 @@ main {
     padding-bottom: 0;
     margin-bottom: 20px;
     border: unset;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .footerMob .logo__title {
+    width: 95px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    margin-right: 11px;
+  }
+  .footerMob .logo__title img {
+    width: 100%;
   }
   .footerLink {
     padding: 20px 0;

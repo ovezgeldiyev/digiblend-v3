@@ -531,12 +531,10 @@
     }
     &Contact {
       display: block;
-      margin-bottom: 38px;
+      margin-bottom: 48px;
       .input {
         display: flex;
         justify-content: flex-end;
-        border-radius: 8px;
-        overflow: hidden;
         input {
           position: absolute;
           top: 0;
@@ -550,6 +548,7 @@
           line-height: 100%;
           color: #000000;
           background-color: $white;
+          border-radius: 8px;
           &::placeholder {
             color: #000000;
           }
@@ -568,9 +567,18 @@
           cursor: pointer;
           background: linear-gradient(90deg, #3578e2 0%, #4d97e8 100%);
           transition: 0.3s ease;
+          border-radius: 0 8px 8px 0;
           &:hover {
             opacity: 0.9;
           }
+        }
+        p {
+          font-size: 14px;
+          line-height: 140%;
+          color: $white;
+          font-weight: 500;
+          background: unset;
+          -webkit-text-fill-color: unset;
         }
       }
     }
@@ -631,6 +639,9 @@
       b {
         font-size: 20px;
       }
+    }
+    &Contact {
+      margin-bottom: 56px;
     }
   }
 }

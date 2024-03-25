@@ -15,10 +15,10 @@ export default function Form({ item }) {
     email: "",
     cv: "",
     // linkedin: '',
-    message: "",
+    phone: "",
     agree: false,
   });
-  const { fName, lName, email, cv, message, agree } = form
+  const { fName, lName, email, cv, phone, agree } = form;
   const updateForm = (data) => {
     setForm((form) => ({ ...form, ...data }));
   };
@@ -31,12 +31,11 @@ export default function Form({ item }) {
       const reader = new FileReader();
       reader.readAsDataURL(file);
       reader.onload = function () {
-        const result = reader.result.split(',')[1];
+        const result = reader.result.split(",")[1];
         // setVal({ ...val, base64File: result });
         resolve(result);
       };
       reader.onerror = function (error) {
-        console.log('Error: ', error);
         reject(error);
       };
     });
@@ -44,46 +43,44 @@ export default function Form({ item }) {
 
   function validateEmail(email) {
     const re =
-      /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-    return re.test(email)
+      /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(email);
   }
-
   const btnClick = async () => {
     if (
       fName === "" ||
       lName === "" ||
       !validateEmail(email) ||
       cv === "" ||
-      message === "" ||
+      phone === "" ||
       agree === false
     )
       setError(true);
     else {
-      const base64File = await getBase64(cv)
+      const base64File = await getBase64(cv);
 
-      const formData = new FormData()
-      formData.append('fName', fName)
-      formData.append('lName', lName)
-      formData.append('email', email)
-      formData.append('cv', base64File)
+      const formData = new FormData();
+      formData.append("fName", fName);
+      formData.append("lName", lName);
+      formData.append("email", email);
+      formData.append("cv", base64File);
       // formData.append('linkedin', linkedin)
-      formData.append('fileName', cv.name)
-      formData.append('message', message)
+      formData.append("fileName", cv.name);
+      formData.append("message", message);
       const res = await fetch(`${apiUrl}/api/apply-page`, {
-        method: 'PUT',
-        body: formData
-      })
+        method: "PUT",
+        body: formData,
+      });
 
-      const result = await res.json()
+      const result = await res.json();
       if (result.success) {
         setError(false);
         setSubmited(true);
       }
     }
-
   };
-  const el = item.apply
-  const img = el.image?.data?.attributes
+  const el = item.apply;
+  const img = el.image?.data?.attributes;
   return (
     <section className="contact">
       <div className="contact__bg">
@@ -100,24 +97,20 @@ export default function Form({ item }) {
             <h1 className="big">
               <FormattedTitle rawTitle={el.title} />
             </h1>
-            <p>
-              {el.content}
-            </p>
+            <p>{el.content}</p>
           </div>
           <FadeIn delay={0.4} className="contact__inner-form">
             <div className="contact__inner-row">
               <label className="input__outer">
                 <h6>{el.first_name}</h6>
                 <div
-                  className={
-                    "input " + (fName === "" && error ? "error" : "")
-                  }
+                  className={"input " + (fName === "" && error ? "error" : "")}
                 >
                   <input
                     type="text"
                     value={fName}
                     onChange={onChangeInput("fName")}
-                    placeholder="Will"
+                    placeholder="Robert"
                   />
                   {fName === "" && error && (
                     <>
@@ -130,9 +123,7 @@ export default function Form({ item }) {
               <label className="input__outer">
                 <h6>{el.last_name}</h6>
                 <div
-                  className={
-                    "input " + (lName === "" && error ? "error" : "")
-                  }
+                  className={"input " + (lName === "" && error ? "error" : "")}
                 >
                   <input
                     type="text"
@@ -152,7 +143,7 @@ export default function Form({ item }) {
                 <h6>{el.email}</h6>
                 <div
                   className={
-                    "input " + (email === "" && error ? "error" : "")
+                    "input " + (!validateEmail(email) && error ? "error" : "")
                   }
                 >
                   <input
@@ -161,10 +152,14 @@ export default function Form({ item }) {
                     onChange={onChangeInput("email")}
                     placeholder="robert@digiblend.nl"
                   />
-                  {email === "" && error && (
+                  {!validateEmail(email) && error && (
                     <>
                       <span className="error">{attentIcon}</span>
-                      <p>This field is required</p>
+                      <p>
+                        {form?.email === ""
+                          ? "This field is required"
+                          : "Missing '@' in email"}
+                      </p>
                     </>
                   )}
                 </div>
@@ -176,11 +171,7 @@ export default function Form({ item }) {
                     "input file " + (cv === "" && error ? "error" : "")
                   }
                 >
-                  <div
-                    className={
-                      "input__file " + (cv?.name ? "active" : "")
-                    }
-                  >
+                  <div className={"input__file " + (cv?.name ? "active" : "")}>
                     {cv?.name ? cv?.name : "Upload here"}
                   </div>
                   <input
@@ -195,6 +186,24 @@ export default function Form({ item }) {
                   <div className="input__upload">{uploadIcon}</div>
                   {cv === "" && error && (
                     <>
+                      <p>This field is required</p>
+                    </>
+                  )}
+                </div>
+              </label>
+              <label className="input__outer big">
+                <h6>Telephone*</h6>
+                <div
+                  className={"input " + (phone === "" && error ? "error" : "")}
+                >
+                  <input
+                    type="tel"
+                    onChange={onChangeInput("phone")}
+                    placeholder="06 32 544 213"
+                  />
+                  {phone === "" && error && (
+                    <>
+                      <span className="error">{attentIcon}</span>
                       <p>This field is required</p>
                     </>
                   )}
@@ -224,12 +233,7 @@ export default function Form({ item }) {
               <label className="input__outer big">
                 <h6>{el.message}</h6>
                 <div className="input">
-                  <textarea
-                    value={message}
-                    onChange={onChangeInput('message')}
-                    rows="7"
-                    placeholder="What moves you?"
-                  ></textarea>
+                  <textarea rows="7" placeholder="What moves you?"></textarea>
                 </div>
               </label>
             </div>
@@ -244,9 +248,7 @@ export default function Form({ item }) {
                   />
                   <span>{checkIcon}</span>
                 </div>
-                <p>
-                  {el.consent}
-                </p>
+                <p>{el.consent}</p>
                 {agree === false && error && (
                   <div className="error">
                     {attentIcon}

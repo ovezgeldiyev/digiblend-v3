@@ -42,7 +42,7 @@ export default function Form({ item }) {
     email: "",
     company: "",
     category: "",
-    message: "",
+    phone: "",
     agree: false,
   });
   const updateForm = (data) => {
@@ -51,12 +51,12 @@ export default function Form({ item }) {
   const onChangeInput = (input) => (e) => {
     setForm((form) => ({ ...form, [input]: e.target.value }));
   };
-  const { fName, lName, company, email, category, message, agree } = form
+  const { fName, lName, company, email, category, phone, agree } = form;
 
   function validateEmail(email) {
     const re =
-      /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-    return re.test(email)
+      /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(email);
   }
 
   const btnClick = async () => {
@@ -66,25 +66,32 @@ export default function Form({ item }) {
       !validateEmail(email) ||
       company === "" ||
       category === "Select Category" ||
-      message === "" ||
+      phone === "" ||
       agree === false
     )
       setError(true);
     else {
-      const res = await fetch('/api/requestService', {
-        method: 'POST',
-        body: JSON.stringify(form)
-      })
-      const result = await res.json()
+      const res = await fetch("/api/requestService", {
+        method: "POST",
+        body: JSON.stringify(form),
+      });
+      const result = await res.json();
       if (result.success) {
-        setForm({ fName: '', lName: '', email: '', company: '', message: '', category: '' })
+        setForm({
+          fName: "",
+          lName: "",
+          email: "",
+          company: "",
+          phone: "",
+          category: "",
+        });
         setError(false);
         setSubmited(true);
       }
     }
   };
-  const request = item.request
-  const img = request.image?.data?.attributes
+  const request = item.request;
+  const img = request.image?.data?.attributes;
   return (
     <section className="contact">
       <div className="contact__bg">
@@ -101,24 +108,20 @@ export default function Form({ item }) {
             <h1 className="big">
               <FormattedTitle rawTitle={request.title} />
             </h1>
-            <p>
-              {request.content}
-            </p>
+            <p>{request.content}</p>
           </div>
           <FadeIn delay={0.4} className="contact__inner-form">
             <div className="contact__inner-row">
               <label className="input__outer">
                 <h6>{request.first_name}</h6>
                 <div
-                  className={
-                    "input " + (fName === "" && error ? "error" : "")
-                  }
+                  className={"input " + (fName === "" && error ? "error" : "")}
                 >
                   <input
                     type="text"
                     value={fName}
                     onChange={onChangeInput("fName")}
-                    placeholder="Will"
+                    placeholder="Robert"
                   />
                   {fName === "" && error && (
                     <>
@@ -131,9 +134,7 @@ export default function Form({ item }) {
               <label className="input__outer">
                 <h6>{request.last_name}</h6>
                 <div
-                  className={
-                    "input " + (lName === "" && error ? "error" : "")
-                  }
+                  className={"input " + (lName === "" && error ? "error" : "")}
                 >
                   <input
                     type="text"
@@ -153,7 +154,7 @@ export default function Form({ item }) {
                 <h6>{request.email}</h6>
                 <div
                   className={
-                    "input " + (email === "" && error ? "error" : "")
+                    "input " + (!validateEmail(email) && error ? "error" : "")
                   }
                 >
                   <input
@@ -162,10 +163,14 @@ export default function Form({ item }) {
                     onChange={onChangeInput("email")}
                     placeholder="robert@digiblend.nl"
                   />
-                  {email === "" && error && (
+                  {!validateEmail(email) && error && (
                     <>
                       <span className="error">{attentIcon}</span>
-                      <p>This field is required</p>
+                      <p>
+                        {form?.email === ""
+                          ? "This field is required"
+                          : "Missing '@' in email"}
+                      </p>
                     </>
                   )}
                 </div>
@@ -174,8 +179,7 @@ export default function Form({ item }) {
                 <h6>{item.organization}</h6>
                 <div
                   className={
-                    "input " +
-                    (company === "" && error ? "error" : "")
+                    "input " + (company === "" && error ? "error" : "")
                   }
                 >
                   <input
@@ -197,24 +201,36 @@ export default function Form({ item }) {
                 <CustomSelect
                   list={list}
                   selected={list[5]}
-                  onChange={(data) => setForm({ ...form, category: data.value })}
+                  onChange={(data) =>
+                    setForm({ ...form, category: data.value })
+                  }
                 />
               </label>
               <label className="input__outer big">
-                <h6>{request.message}</h6>
-                <div className="input">
-                  <textarea
-                    value={message}
-                    onChange={onChangeInput('message')}
-                    rows="7"
-                    placeholder="We are curious about your challenges."
-                  ></textarea>
-                  {message === "" && error && (
+                <h6>Telephone*</h6>
+                <div
+                  className={"input " + (phone === "" && error ? "error" : "")}
+                >
+                  <input
+                    type="tel"
+                    onChange={onChangeInput("phone")}
+                    placeholder="06 32 544 213"
+                  />
+                  {phone === "" && error && (
                     <>
                       <span className="error">{attentIcon}</span>
                       <p>This field is required</p>
                     </>
                   )}
+                </div>
+              </label>
+              <label className="input__outer big">
+                <h6>{request.message}</h6>
+                <div className="input">
+                  <textarea
+                    rows="7"
+                    placeholder="We are curious about your challenges."
+                  ></textarea>
                 </div>
               </label>
             </div>
@@ -229,9 +245,7 @@ export default function Form({ item }) {
                   />
                   <span>{checkIcon}</span>
                 </div>
-                <p>
-                  {request.consent}
-                </p>
+                <p>{request.consent}</p>
                 {agree === false && error && (
                   <div className="error">
                     {attentIcon}

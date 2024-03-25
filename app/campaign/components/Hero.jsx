@@ -52,6 +52,7 @@ const SliderItem = (props) => {
     surname: "",
     email: "",
     phone: "",
+    phone2: "",
     company_name: "",
     agree: false,
   });
@@ -61,9 +62,15 @@ const SliderItem = (props) => {
   const onChangeInput = (input) => (e) => {
     setForm((form) => ({ ...form, [input]: e.target.value }));
   };
+  function validateEmail(email) {
+    const re =
+      /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(email);
+  }
+
   const btnClick = () => {
     if (
-      form.email === "" ||
+      !validateEmail(form?.email) ||
       form.company_name === "" ||
       form.name === "" ||
       form.phone === "" ||
@@ -76,7 +83,13 @@ const SliderItem = (props) => {
       setSubmited(true);
     }
   };
-
+  const btnClickMob = () => {
+    if (form.phone === "") setError(true);
+    else {
+      setError(false);
+      setSubmited(true);
+    }
+  };
   const video = useRef(null);
   const [videoState, setVideoState] = useState(true);
   const playBtnClick = () => {
@@ -112,9 +125,20 @@ const SliderItem = (props) => {
                 </div>
                 <div className="heroContact">
                   <div className="input">
-                    <input type="tel" placeholder="Telefoon*" />
-                    <button type="submit">Meer info</button>
-                    
+                    <input
+                      type="tel"
+                      placeholder="Telefoon*"
+                      value={form?.phone}
+                      onChange={onChangeInput("phone")}
+                    />
+                    <button type="button" onClick={btnClickMob}>
+                      Meer info
+                    </button>
+                    {submited && (
+                      <p>
+                        Thank you for contacting us!
+                      </p>
+                    )}
                   </div>
                 </div>
                 <ul>
@@ -198,19 +222,25 @@ const SliderItem = (props) => {
                     <h6>Emailadres*</h6>
                     <div
                       className={
-                        "input " + (form.email === "" && error ? "error" : "")
+                        "input " +
+                        (!validateEmail(form?.email) && error ? "error" : "")
                       }
                     >
                       <input
                         type="email"
+                        required
                         value={form.email}
                         onChange={onChangeInput("email")}
                         placeholder="hidde@vanbruggenadvocaten.nl"
                       />
-                      {form.email === "" && error && (
+                      {!validateEmail(form?.email) && error && (
                         <>
                           <span className="error">{attentIcon}</span>
-                          <p>This field is required</p>
+                          <p>
+                            {form?.email === ""
+                              ? "This field is required"
+                              : "Missing '@' in email"}
+                          </p>
                         </>
                       )}
                     </div>

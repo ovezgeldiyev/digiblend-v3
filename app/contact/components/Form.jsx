@@ -13,10 +13,10 @@ export default function Form({ item }) {
     lName: "",
     email: "",
     company: "",
-    message: "",
+    phone: "",
     agree: false,
   });
-  const { fName, lName, email, company, message, agree } = form
+  const { fName, lName, email, company, phone, agree } = form;
   const updateForm = (data) => {
     setForm((form) => ({ ...form, ...data }));
   };
@@ -26,8 +26,8 @@ export default function Form({ item }) {
 
   function validateEmail(email) {
     const re =
-      /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-    return re.test(email)
+      /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(email);
   }
 
   const btnClick = async () => {
@@ -36,25 +36,25 @@ export default function Form({ item }) {
       lName === "" ||
       !validateEmail(email) ||
       company === "" ||
-      message === "" ||
+      phone === "" ||
       agree === false
     )
       setError(true);
     else {
-      const res = await fetch('/api/contact', {
-        method: 'POST',
-        body: JSON.stringify(form)
-      })
-      const result = await res.json()
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        body: JSON.stringify(form),
+      });
+      const result = await res.json();
       if (result.success) {
-        setForm({ fName: '', lName: '', email: '', company: '', message: '' })
+        setForm({ fName: "", lName: "", email: "", company: "", phone: "" });
         setError(false);
         setSubmited(true);
       }
     }
   };
-  const contact = item.contact
-  const img = contact.image?.data?.attributes
+  const contact = item.contact;
+  const img = contact.image?.data?.attributes;
 
   return (
     <section className="contact">
@@ -72,14 +72,23 @@ export default function Form({ item }) {
             <h1 className="big">
               <FormattedTitle rawTitle={contact.title} />
             </h1>
-            <p>
-              {item.contact.content}
-            </p>
+            <p>{item.contact.content}</p>
             <div className="contact__inner-info">
-              <p>{item.phone.label}</p>
-              <a href={`tel:${item.phone.url}`} className="button secondary">
-                {item.phone.url}
-              </a>
+              <div className="contact__inner-info-item">
+                <p>{item.phone.label}</p>
+                <a href={`tel:${item.phone.url}`} className="button secondary">
+                  {item.phone.url}
+                </a>
+              </div>
+              <div className="contact__inner-info-item">
+                <b>or</b>
+                <a
+                  href="https://calendar.app.google/dMzxzJC5r2TZ3u786"
+                  className="button secondary"
+                >
+                  Schedule Intake
+                </a>
+              </div>
             </div>
           </div>
           <FadeIn delay={0.4} className="contact__inner-form">
@@ -93,109 +102,109 @@ export default function Form({ item }) {
                 >
                   <input
                     type="text"
-                    value={
-                      fName}
+                    value={fName}
                     onChange={onChangeInput("fName")}
-                    placeholder="Will"
+                    placeholder="Robert"
                   />
-                  {
-                    fName === "" && error && (
-                      <>
-                        <span className="error">{attentIcon}</span>
-                        <p>This field is required</p>
-                      </>
-                    )}
+                  {fName === "" && error && (
+                    <>
+                      <span className="error">{attentIcon}</span>
+                      <p>This field is required</p>
+                    </>
+                  )}
                 </div>
               </label>
               <label className="input__outer">
                 <h6>{contact.last_name}</h6>
                 <div
-                  className={
-                    "input " + (
-                      lName === "" && error ? "error" : "")
-                  }
+                  className={"input " + (lName === "" && error ? "error" : "")}
                 >
                   <input
                     type="text"
-                    value={
-                      lName}
+                    value={lName}
                     onChange={onChangeInput("lName")}
                     placeholder="Smit"
                   />
-                  {
-                    lName === "" && error && (
-                      <>
-                        <span className="error">{attentIcon}</span>
-                        <p>This field is required</p>
-                      </>
-                    )}
+                  {lName === "" && error && (
+                    <>
+                      <span className="error">{attentIcon}</span>
+                      <p>This field is required</p>
+                    </>
+                  )}
                 </div>
               </label>
               <label className="input__outer">
                 <h6>{contact.email}</h6>
                 <div
                   className={
-                    "input " + (
-                      email === "" && error ? "error" : "")
+                    "input " + (!validateEmail(email) && error ? "error" : "")
                   }
                 >
                   <input
                     type="text"
-                    value={
-                      email}
+                    required
+                    value={email}
                     onChange={onChangeInput("email")}
                     placeholder="robert@digiblend.nl"
                   />
-                  {
-                    email === "" && error && (
-                      <>
-                        <span className="error">{attentIcon}</span>
-                        <p>This field is required</p>
-                      </>
-                    )}
+                  {!validateEmail(email) && error && (
+                    <>
+                      <span className="error">{attentIcon}</span>
+                      <p>
+                        {form?.email === ""
+                          ? "This field is required"
+                          : "Missing '@' in email"}
+                      </p>
+                    </>
+                  )}
                 </div>
               </label>
               <label className="input__outer">
                 <h6>{item.organization}</h6>
                 <div
                   className={
-                    "input " +
-                    (
-                      company === "" && error ? "error" : "")
+                    "input " + (company === "" && error ? "error" : "")
                   }
                 >
                   <input
                     type="text"
-                    value={
-                      company}
+                    value={company}
                     onChange={onChangeInput("company")}
                     placeholder="digiblend"
                   />
-                  {
-                    company === "" && error && (
-                      <>
-                        <span className="error">{attentIcon}</span>
-                        <p>This field is required</p>
-                      </>
-                    )}
+                  {company === "" && error && (
+                    <>
+                      <span className="error">{attentIcon}</span>
+                      <p>This field is required</p>
+                    </>
+                  )}
+                </div>
+              </label>
+              <label className="input__outer big">
+                <h6>Telephone*</h6>
+                <div
+                  className={"input " + (phone === "" && error ? "error" : "")}
+                >
+                  <input
+                    type="tel"
+                    onChange={onChangeInput("phone")}
+                    placeholder="06 32 544 213"
+                  />
+                  {phone === "" && error && (
+                    <>
+                      <span className="error">{attentIcon}</span>
+                      <p>This field is required</p>
+                    </>
+                  )}
                 </div>
               </label>
               <label className="input__outer big">
                 <h6>{contact.message}</h6>
                 <div className="input">
                   <textarea
-                    value={
-                      message}
-                    onChange={onChangeInput('message')}
                     rows="7"
                     placeholder="We are curious about your challenges."
                   ></textarea>
-                  {message === "" && error && (
-                    <>
-                      <span className="error">{attentIcon}</span>
-                      <p>This field is required</p>
-                    </>
-                  )}
                 </div>
               </label>
             </div>
@@ -210,9 +219,7 @@ export default function Form({ item }) {
                   />
                   <span>{checkIcon}</span>
                 </div>
-                <p>
-                  {contact.consent}
-                </p>
+                <p>{contact.consent}</p>
                 {agree === false && error && (
                   <div className="error">
                     {attentIcon}

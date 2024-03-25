@@ -32,7 +32,9 @@ export default function Footer({ item, totalJobs }) {
           <>
             <div className="footerMob">
               <div className="logo">
-                <h6 className="big">digiblend.</h6>
+                <div className="logo__title">
+                    <img src="/images/logo-name.svg" alt="" />
+                </div>
                 <div className="logo__stars">
                   {[0, 1, 2, 3, 4].map((item, index) => {
                     return (

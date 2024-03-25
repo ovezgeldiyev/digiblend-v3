@@ -30,6 +30,11 @@
       &.hidden {
         display: none;
       }
+      &.gray {
+        a {
+          color: #9e9fa3;
+        }
+      }
       &.dropBtn {
         &.active {
           a {

@@ -16,10 +16,10 @@
       align-items: flex-end;
     }
     &-wrapper {
-        margin-bottom: 75px;
-        &:last-child {
-            margin: 0;
-        }
+      margin-bottom: 75px;
+      &:last-child {
+        margin: 0;
+      }
     }
   }
   &Item {
@@ -29,15 +29,17 @@
     flex-direction: column;
     cursor: pointer;
     &:hover {
-        opacity: 1;
-        img {
-            transform: scale(1.1);
-        }
+      opacity: 1;
+      img {
+        transform: scale(1.1);
+      }
     }
     &__image {
       padding-bottom: 56%;
       position: relative;
       margin-bottom: 20px;
+      overflow: hidden;
+      border-radius: 10px;
       overflow: hidden;
       &::before {
         position: absolute;
@@ -61,7 +63,7 @@
         top: 0;
         left: 0;
         @include fullImage;
-        transition: .4s ease;
+        transition: 0.4s ease;
       }
     }
     &__info {
@@ -153,7 +155,7 @@
         align-items: center;
         padding: 0;
       }
-      &-wrapper{
+      &-wrapper {
         margin-bottom: 100px;
       }
     }

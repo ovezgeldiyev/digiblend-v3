@@ -97,12 +97,25 @@
     }
     &-info {
       display: flex;
+      flex-wrap: wrap;
       align-items: center;
-      padding: 40px 0 25px;
+      padding: 30px 0 15px;
+      &-item {
+        margin: 12px 0;
+        display: flex;
+        align-items: center;
+      }
       p {
         margin-right: 18px;
+        white-space: nowrap;
+      }
+      b {
+        margin: 0 18px;
+        display: block;
+        font-weight: 400;
       }
       .button {
+        min-width: 203px;
         margin: 0 !important;
       }
     }
@@ -202,7 +215,12 @@
   .contact {
     &__inner {
       &-info {
-        padding: 40px 0 15px;
+        padding: 30px 0 15px;
+        &-item {
+          width: 100%;
+          max-width: 390px;
+          justify-content: space-between;
+        }
       }
       .input {
         transition: 0.3s ease;
