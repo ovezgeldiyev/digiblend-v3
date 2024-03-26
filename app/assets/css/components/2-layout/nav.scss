@@ -44,7 +44,6 @@
             }
           }
         }
-
       }
       a {
         color: $white;
@@ -53,6 +52,7 @@
         font-weight: 500;
         position: relative;
         padding: 10px;
+        transition: 0.3s ease;
         &:hover {
           &::before {
             opacity: 1;
@@ -542,6 +542,5 @@
       //   left: 20px;
       // }
     }
-
   }
 }

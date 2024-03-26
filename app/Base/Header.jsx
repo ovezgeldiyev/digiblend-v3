@@ -20,6 +20,7 @@ export default function Header({ item, servicesMenu }) {
   const [menuType, setMenuType] = useState("main");
   const [mobNav, setMobNav] = useState(false);
   const [mobTab, setMobTab] = useState(null);
+  const [activeLink, setActiveLink] = useState(null);
   const [lang, setLang] = useState({
     id: "1",
     value: "NL",
@@ -88,18 +89,53 @@ export default function Header({ item, servicesMenu }) {
               <div className="nav__inner">
                 <ul>
                   <li
-                    className={"dropBtn " + (drop ? "active" : "")}
+                    className={
+                      "dropBtn " +
+                      (drop ? "active" : "") +
+                      (activeLink === "what" || activeLink === null
+                        ? ""
+                        : " gray")
+                    }
+                    onMouseOver={() => setActiveLink("what")}
+                    onMouseLeave={() => setActiveLink(null)}
                     ref={dropBtnRef}
                   >
                     <a href="#">What we do</a>
                   </li>
-                  <li className={drop ? "gray" : ""}>
+                  <li
+                    className={
+                      (drop ? "gray" : "") +
+                      (activeLink === "who" || activeLink === null
+                        ? ""
+                        : " gray")
+                    }
+                    onMouseOver={() => setActiveLink("who")}
+                    onMouseLeave={() => setActiveLink(null)}
+                  >
                     <a href="#">Who we are</a>
                   </li>
-                  <li className={drop ? "gray" : ""}>
+                  <li
+                    className={
+                      (drop ? "gray" : "") +
+                      (activeLink === "insight" || activeLink === null
+                        ? ""
+                        : " gray")
+                    }
+                    onMouseOver={() => setActiveLink("insight")}
+                    onMouseLeave={() => setActiveLink(null)}
+                  >
                     <a href="#">Insights</a>
                   </li>
-                  <li className={drop ? "gray" : ""}>
+                  <li
+                    className={
+                      (drop ? "gray" : "") +
+                      (activeLink === "careers" || activeLink === null
+                        ? ""
+                        : " gray")
+                    }
+                    onMouseOver={() => setActiveLink("careers")}
+                    onMouseLeave={() => setActiveLink(null)}
+                  >
                     <a href="#">Careers</a>
                   </li>
                   {/* {item.links.slice(0, 4).map((el, i) => (
@@ -399,7 +435,19 @@ export default function Header({ item, servicesMenu }) {
             </nav>
             <div className="header__inner-buttons">
               <div className="ct">
-                <Link href={item.links[4].url}>{item.links[4].label}</Link>
+                <Link
+                  className={
+                    (drop ? "gray" : "") +
+                    (activeLink === "contact" || activeLink === null
+                      ? ""
+                      : " gray")
+                  }
+                  href={item.links[4].url}
+                  onMouseOver={() => setActiveLink("contact")}
+                  onMouseLeave={() => setActiveLink(null)}
+                >
+                  {item.links[4].label}
+                </Link>
               </div>
               <a href={`tel:${item.phone}`} className="button primary">
                 <span>
