@@ -109,7 +109,7 @@ export default function Footer({ item, totalJobs }) {
         ) : (
           <div className="footer__inner">
             <div className="footer__inner-row">
-              {item.links.map((el, i) => (
+              {item?.links.map((el, i) => (
                 <div className="footer__inner-col" key={i}>
                   <div className="logo">
                     <h6 className="big">{el.title}</h6>
@@ -152,7 +152,7 @@ export default function Footer({ item, totalJobs }) {
               ))}
 
               <div className="footer__inner-col">
-                <BlocksRenderer content={item.contact} />
+                <BlocksRenderer content={item?.contact} />
               </div>
             </div>
           </div>
@@ -162,14 +162,14 @@ export default function Footer({ item, totalJobs }) {
         <div className="auto__container">
           <div className="footerCopy__inner">
             <div className="footerCopy__inner-links">
-              <p>{item.copyright}</p>
-              {item.bottom_links.map((el) => (
+              <p>{item?.copyright}</p>
+              {item?.bottom_links.map((el) => (
                 <Link href={el.url ?? ""} key={el.label}>
                   {el.label}
                 </Link>
               ))}
             </div>
-            <p>{item.developer}</p>
+            <p>{item?.developer}</p>
           </div>
         </div>
       </div>

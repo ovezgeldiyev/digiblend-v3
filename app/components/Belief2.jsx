@@ -1,6 +1,6 @@
 import React from "react";
 import Slider from "react-slick";
-import { bookIcon } from "../Base/SVG";
+import { bookIcon, flashIcon } from "../Base/SVG";
 import Link from "next/link";
 
 const beliefList = [
@@ -10,6 +10,23 @@ const beliefList = [
     title: "A 240% Lead Surge: Our Law Firm's Success Story",
     text: "How our marketing campaigns boosted a Law Firm's leads by 240%",
     bg: "/images/belief/1.jpg",
+    cards: [
+      {
+        title: "KWALITATIEVE LEADS",
+        number: "+320%",
+        text: "Aanzienlijke toename in kwalitatieve leads.",
+      },
+      {
+        title: "CONVERSIE RATIO",
+        number: "+25%",
+        text: "Relevantie voor de doelgroep leidt tot een verhoogde conversieratio.",
+      },
+      {
+        title: "ONLINE OMZET",
+        number: "+42%",
+        text: "Toename in omzet via online kanalen.",
+      },
+    ],
   },
   {
     id: "2",
@@ -17,6 +34,23 @@ const beliefList = [
     title: "€280K Prospects: Garment Industry Disruption",
     text: "Prospecting high quality leads with our Marketing Automation strategy.",
     bg: "/images/belief/2.jpg",
+    cards: [
+      {
+        title: "KWALITATIEVE LEADS",
+        number: "+320%",
+        text: "Aanzienlijke toename in kwalitatieve leads.",
+      },
+      {
+        title: "CONVERSIE RATIO",
+        number: "+25%",
+        text: "Relevantie voor de doelgroep leidt tot een verhoogde conversieratio.",
+      },
+      {
+        title: "ONLINE OMZET",
+        number: "+42%",
+        text: "Toename in omzet via online kanalen.",
+      },
+    ],
   },
   {
     id: "3",
@@ -24,6 +58,23 @@ const beliefList = [
     title: "A 240% Lead Surge: Our Law Firm's Success Story",
     text: "How our marketing campaigns boosted a Law Firm's leads by 240%",
     bg: "/images/belief/3.jpg",
+    cards: [
+      {
+        title: "KWALITATIEVE LEADS",
+        number: "+320%",
+        text: "Aanzienlijke toename in kwalitatieve leads.",
+      },
+      {
+        title: "CONVERSIE RATIO",
+        number: "+25%",
+        text: "Relevantie voor de doelgroep leidt tot een verhoogde conversieratio.",
+      },
+      {
+        title: "ONLINE OMZET",
+        number: "+42%",
+        text: "Toename in omzet via online kanalen.",
+      },
+    ],
   },
   {
     id: "4",
@@ -31,6 +82,23 @@ const beliefList = [
     title: "A 240% Lead Surge: Our Law Firm's Success Story",
     text: "How our marketing campaigns boosted a Law Firm's leads by 240%",
     bg: "/images/belief/4.jpg",
+    cards: [
+      {
+        title: "KWALITATIEVE LEADS",
+        number: "+320%",
+        text: "Aanzienlijke toename in kwalitatieve leads.",
+      },
+      {
+        title: "CONVERSIE RATIO",
+        number: "+25%",
+        text: "Relevantie voor de doelgroep leidt tot een verhoogde conversieratio.",
+      },
+      {
+        title: "ONLINE OMZET",
+        number: "+42%",
+        text: "Toename in omzet via online kanalen.",
+      },
+    ],
   },
 ];
 export default function Belief() {
@@ -61,7 +129,7 @@ export default function Belief() {
     ],
   };
   return (
-    <section className="belief">
+    <section className="belief new">
       <div className="auto__container">
         <div className="belief__inner">
           <div className="belief__inner-title">
@@ -79,7 +147,18 @@ export default function Belief() {
 }
 const BeliefItem = (props) => {
   return (
-    <Link href={props.link} className="beliefItem">
+    <Link href={props.link} className="beliefItem new">
+      <div className="beliefItem__overlay">
+        {props?.cards.map((item, index) => {
+          return (
+            <div className="beliefItem__card" key={index}>
+              <h6 className="sup">{item?.title}</h6>
+              <h4>{item?.number}</h4>
+              <p>{item?.text}</p>
+            </div>
+          );
+        })}
+      </div>
       <div className="beliefItem__bg">
         <img src={props.bg} alt="" />
       </div>
@@ -89,7 +168,7 @@ const BeliefItem = (props) => {
           <p>{props.text}</p>
           <div className="beliefItem__link">
             <b>READ MORE</b>
-            {bookIcon}
+            {flashIcon}
           </div>
         </div>
       </div>

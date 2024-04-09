@@ -47,6 +47,12 @@ h6 {
     text-fill-color: transparent;
   }
 }
+p {
+  &.sm {
+    font-size: 14px;
+    line-height: 180%;
+  }
+}
 main {
   overflow: hidden;
   padding-top: 80px;
@@ -118,6 +124,13 @@ main {
     }
   }
   &.up {
+    &:hover {
+      svg {
+        animation: 0.4s ease arrowSlideUp;
+      }
+    }
+  }
+  &.right {
     &:hover {
       svg {
         animation: 0.4s ease arrowSlideUp;
@@ -624,7 +637,7 @@ main {
   border-radius: 40px 0px 0px 40px;
   padding: 14px 16px;
   z-index: 90;
-  transition: .3s ease;
+  transition: 0.3s ease;
   &.sticky {
     transform: translateX(83px);
   }
@@ -708,6 +721,16 @@ main {
   }
 }
 @keyframes arrowSlideUp {
+  0% {
+    transform: translateY(40px) scaleY(-1);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(0) scaleY(-1);
+    opacity: 1;
+  }
+}
+@keyframes arrowSlideRight {
   0% {
     transform: translateY(40px) scaleY(-1);
     opacity: 0;

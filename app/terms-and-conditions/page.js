@@ -1,20 +1,25 @@
-import React from "react";
+"use client";
+import React, { useEffect, useState } from "react";
+import Header from "../Base/Header";
+import Footer from "../Base/Footer";
 import Terms from "./components/Terms";
-import { getTerms } from "@/app/lib/endpoints";
-import { metadata } from "@/app/lib/meta";
-
-export default async function page() {
-  const result = await getTerms()
+export default function page() {
+  useEffect(() => {
+    setUniqFooter(true);
+  }, []);
+  const [uniqFooter, setUniqFooter] = useState(false);
+  const [menu, setMenu] = useState(false);
+  useEffect(() => {
+    setMenu(false);
+    document.body.classList.remove("active");
+  }, []);
   return (
-    <main>
-      <Terms item={result?.data?.attributes} />
-    </main>
+    <>
+      <Header menu={menu} setMenu={setMenu} />
+      <main>
+        <Terms />
+      </main>
+      <Footer uniqFooter={uniqFooter} />
+    </>
   );
-}
-
-export async function generateMetadata() {
-  const result = await getTerms()
-  const item = result?.data?.attributes
-  const seo = item?.seo
-  return metadata(seo)
 }

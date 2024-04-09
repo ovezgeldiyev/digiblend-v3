@@ -102,7 +102,7 @@ const SliderItem = (props) => {
   };
   return (
     <>
-      <div className="hero__bg second">
+      <div className="hero__bg second" >
         <video
           ref={video}
           onEnded={() => setVideoState(false)}
@@ -134,11 +134,7 @@ const SliderItem = (props) => {
                     <button type="button" onClick={btnClickMob}>
                       Meer info
                     </button>
-                    {submited && (
-                      <p>
-                        Thank you for contacting us!
-                      </p>
-                    )}
+                    {submited && <p>Thank you for contacting us!</p>}
                   </div>
                 </div>
                 <ul>
@@ -167,17 +163,22 @@ const SliderItem = (props) => {
                     Beperkt aantal klantplekken
                   </li>
                 </ul>
+                <a href="#" className="button primary">
+                  <span>Plan Adviesgesprek</span>
+                </a>
               </div>
               <FadeIn delay={0.4} className="heroForm">
-                <div className="heroForm__title">
+                <div className="heroForm__title" >
                   <h5>
-                    Wij ondersteunen een maximaal aantal klanten per sector &
-                    regio. Er zijn nog <span>2 plekken </span> beschikbaar.
+                    Ontvang ons whitepaper over <span>effectieve</span> digitale
+                    transformatie.
                   </h5>
+                </div>
+                <div className="heroForm__image">
+                  <img src="./images/white-paper.png" alt="" />
                 </div>
                 <div className="heroForm__row">
                   <label className="input__outer sm">
-                    <h6>Voornaam*</h6>
                     <div
                       className={
                         "input " + (form.name === "" && error ? "error" : "")
@@ -187,18 +188,17 @@ const SliderItem = (props) => {
                         type="text"
                         value={form.name}
                         onChange={onChangeInput("name")}
-                        placeholder="Hidde"
+                        placeholder="Voornaam*"
                       />
                       {form.name === "" && error && (
                         <>
                           <span className="error">{attentIcon}</span>
-                          <p>This field is required</p>
+                          <p>Niet ingevuld</p>
                         </>
                       )}
                     </div>
                   </label>
                   <label className="input__outer sm">
-                    <h6>Achternaam*</h6>
                     <div
                       className={
                         "input " + (form.surname === "" && error ? "error" : "")
@@ -208,18 +208,17 @@ const SliderItem = (props) => {
                         type="text"
                         value={form.surname}
                         onChange={onChangeInput("surname")}
-                        placeholder="Basten"
+                        placeholder="Achternaam*"
                       />
                       {form.surname === "" && error && (
                         <>
                           <span className="error">{attentIcon}</span>
-                          <p>This field is required</p>
+                          <p>Niet ingevuld</p>
                         </>
                       )}
                     </div>
                   </label>
                   <label className="input__outer">
-                    <h6>Emailadres*</h6>
                     <div
                       className={
                         "input " +
@@ -231,43 +230,21 @@ const SliderItem = (props) => {
                         required
                         value={form.email}
                         onChange={onChangeInput("email")}
-                        placeholder="hidde@vanbruggenadvocaten.nl"
+                        placeholder="Emailadres*"
                       />
                       {!validateEmail(form?.email) && error && (
                         <>
                           <span className="error">{attentIcon}</span>
                           <p>
                             {form?.email === ""
-                              ? "This field is required"
-                              : "Missing '@' in email"}
+                              ? "Niet ingevuld"
+                              : "Controleer het e-mailadres"}
                           </p>
                         </>
                       )}
                     </div>
                   </label>
                   <label className="input__outer">
-                    <h6>Telefoon*</h6>
-                    <div
-                      className={
-                        "input " + (form.phone === "" && error ? "error" : "")
-                      }
-                    >
-                      <input
-                        type="tel"
-                        value={form.phone}
-                        onChange={onChangeInput("phone")}
-                        placeholder="+31 123 456 7894"
-                      />
-                      {form.phone === "" && error && (
-                        <>
-                          <span className="error">{attentIcon}</span>
-                          <p>This field is required</p>
-                        </>
-                      )}
-                    </div>
-                  </label>
-                  <label className="input__outer">
-                    <h6>Naam Advocatenkantoor*</h6>
                     <div
                       className={
                         "input " +
@@ -278,12 +255,32 @@ const SliderItem = (props) => {
                         type="text"
                         value={form.company_name}
                         onChange={onChangeInput("company_name")}
-                        placeholder="Van Bruggen Advocaten"
+                        placeholder="Advocatenkantoor*"
                       />
                       {form.company_name === "" && error && (
                         <>
                           <span className="error">{attentIcon}</span>
-                          <p>This field is required</p>
+                          <p>Niet ingevuld</p>
+                        </>
+                      )}
+                    </div>
+                  </label>
+                  <label className="input__outer">
+                    <div
+                      className={
+                        "input " + (form.phone === "" && error ? "error" : "")
+                      }
+                    >
+                      <input
+                        type="tel"
+                        value={form.phone}
+                        onChange={onChangeInput("phone")}
+                        placeholder="Telefoon*"
+                      />
+                      {form.phone === "" && error && (
+                        <>
+                          <span className="error">{attentIcon}</span>
+                          <p>Niet ingevuld</p>
                         </>
                       )}
                     </div>
@@ -308,7 +305,7 @@ const SliderItem = (props) => {
                     {form.agree === false && error && (
                       <div className="error">
                         {attentIcon}
-                        <p>This field is required</p>
+                        <p>Niet ingevuld</p>
                       </div>
                     )}
                   </label>
@@ -317,13 +314,13 @@ const SliderItem = (props) => {
                     className="button primary"
                     onClick={btnClick}
                   >
-                    <span>Ik ontvang graag meer informatie</span>
+                    <span>Download Whitepaper</span>
                     {arrowRight}
                   </button>
                   {submited && (
                     <p>
-                      Thank you for contacting us! We will get back to you as
-                      soon as possible.
+                      Gefeliciteerd, de eerste stap naar online bedrijfsgroei is
+                      gezet. We nemen binnen 3 werkdagen contact met u op.
                     </p>
                   )}
                 </div>

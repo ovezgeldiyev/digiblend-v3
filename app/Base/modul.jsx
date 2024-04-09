@@ -549,23 +549,33 @@ export const benefits6 = {
   list: [
     {
       id: "1",
-      text: "Wij creëren op maat gemaakte oplossingen die passen bij de specifieke behoeften van uw advocatenpraktijk.",
+      text: "Maatwerkoplossingen, perfect afgestemd op uw advocatenpraktijk",
+      mobText: "Maatwerk oplossingen",
+      desc: " Met onze gerichte strategieën vergroten we de klantacquisitie, verbeteren we uw klantenbasis en stimuleren we uw omzet.",
     },
     {
       id: "2",
-      text: "Wij houden uw kantoor innovatief en aanpasbaar door voorop te blijven in digitale trends.",
+      text: "Groeistrategieën gesteund door data voor tastbare resultaten",
+      mobText: "Maatwerk oplossingen",
+      desc: " Met onze gerichte strategieën vergroten we de klantacquisitie, verbeteren we uw klantenbasis en stimuleren we uw omzet.",
     },
     {
       id: "3",
-      text: "Wij committeren ons aan uw succes door middel van heldere communicatie, updates en ondersteuning.",
+      text: "Blijf concurrerend met de nieuwste digitale trends",
+      mobText: "Maatwerk oplossingen",
+      desc: " Met onze gerichte strategieën vergroten we de klantacquisitie, verbeteren we uw klantenbasis en stimuleren we uw omzet.",
     },
     {
       id: "4",
-      text: "Wij versterken uw online aanwezigheid met groeistrategieën ondersteund door data.",
+      text: "Uw succes is onze focus, gewaarborgd door heldere communicatie en ondersteuning",
+      mobText: "Maatwerk oplossingen",
+      desc: " Met onze gerichte strategieën vergroten we de klantacquisitie, verbeteren we uw klantenbasis en stimuleren we uw omzet.",
     },
     {
       id: "5",
-      text: "Een geschiedenis van tevreden cliënten en succesvolle projecten spreekt voor ons.",
+      text: "Een track-record van tevreden cliënten en succesvolle projecten spreekt voor ons",
+      mobText: "Maatwerk oplossingen",
+      desc: " Met onze gerichte strategieën vergroten we de klantacquisitie, verbeteren we uw klantenbasis en stimuleren we uw omzet.",
     },
   ],
   status: false,

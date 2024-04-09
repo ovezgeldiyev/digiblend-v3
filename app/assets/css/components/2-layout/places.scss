@@ -1,13 +1,13 @@
 .places {
-  display: none;
-  padding-top: 50px;
+  padding: 80px 0 100px;
   &__inner {
     position: relative;
+    &-title {
+      margin-bottom: 50px;
+    }
     &-slider {
-      margin: 0 -14px;
-      padding-bottom: 50px;
+      margin: 0 -15px;
       position: static !important;
-      max-width: 300px;
     }
     .slick {
       &-track {
@@ -15,7 +15,7 @@
       }
       &-slide {
         height: unset !important;
-        margin: 0 14px;
+        margin: 0 15px;
         & > div {
           height: 100%;
         }
@@ -60,32 +60,97 @@
     }
   }
   &Item {
-    padding: 40px 20px;
+    padding: 22px 20px 50px;
     background-color: #333333;
-    border-radius: 5px;
+    border-radius: 10px;
     height: 100%;
     box-sizing: border-box;
-    &__title {
+    color: $white;
+    &__icon {
+      width: 60px;
+      height: 60px;
       display: flex;
+      justify-content: center;
       align-items: center;
-      margin-bottom: 20px;
-      h6 {
-        font-weight: 600;
-        font-size: 20px;
-        line-height: 100%;
-        background: linear-gradient(90deg, #3578e2 0%, #4d97e8 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        text-fill-color: transparent;
-        margin-left: 14px;
+      margin-bottom: 25px;
+      img {
+        width: 100%;
       }
     }
+    h6 {
+      font-weight: 700;
+      font-size: 18px;
+      line-height: 120%;
+      margin-bottom: 20px;
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    p {
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 150%;
+    }
+  }
+}
+// 1180px
+@mixin places-xlg-xxlg {
+  .places {
+    &__inner {
+      &-slider {
+        margin: 0 -8px;
+      }
+      .slick {
+        &-slide {
+          margin: 0 8px;
+        }
+      }
+    }
+    &Item {
+      padding: 20px 16px 40px;
+    }
+  }
+}
+// 1024px
+@mixin places-lg-xlg {
+  .places {
+    &__inner {
+      &-slider {
+        padding-bottom: 50px;
+      }
+    }
+  }
+}
+// 930px
+@mixin places-md-lg {
+  .places {
+    padding: 600px 0 80px;
   }
 }
 // 540px
 @mixin places-xsm-sm {
   .places {
-    display: block;
+    padding-top: 680px;
+    &__inner {
+      &-title {
+        text-align: center;
+        margin-bottom: 35px;
+      }
+      &-slider {
+        padding-bottom: 40px;
+        margin: 0 -16px;
+        max-width: 320px;
+      }
+      .slick {
+        &-slide {
+          margin: 0 16px;
+        }
+      }
+    }
+    &Item {
+      padding: 22px 20px 50px;
+    }
   }
 }

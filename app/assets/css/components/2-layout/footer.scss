@@ -129,6 +129,58 @@
     }
   }
 }
+.copy {
+  &__inner {
+    padding: 20px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &Item {
+    width: 33.3%;
+    border-right: 1px solid rgba($white, 0.3);
+    box-sizing: border-box;
+    padding: 16px 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &:last-child {
+      border: unset;
+      justify-content: flex-end;
+      padding-right: 0;
+    }
+    &:first-child {
+      justify-content: flex-start;
+      padding-left: 0;
+    }
+    &__location {
+      display: flex;
+      align-items: center;
+      svg {
+        width: 20px;
+        height: 26px;
+        margin-right: 14px;
+        color: $white;
+      }
+      p {
+        width: calc(100% - 34px);
+        font-weight: 600;
+        color: $white;
+      }
+    }
+    & > p {
+      color: #6c6c6c;
+    }
+    .logo {
+      padding: 0;
+      margin: 0;
+      border: unset;
+      &__stars {
+        margin-left: 16px;
+      }
+    }
+  }
+}
 // 1180px
 @mixin footer-xlg-xxlg {
   .footer {
@@ -169,6 +221,30 @@
       padding-top: 100px;
     }
   }
+  .copy {
+    &Item {
+      width: 30%;
+      &:first-child {
+        width: 35%;
+      }
+      &:last-child {
+        width: 35%;
+      }
+      &__location {
+        svg {
+          width: 16px;
+          height: 20px;
+          margin-right: 8px;
+        }
+        p {
+          width: calc(100% - 22px);
+        }
+      }
+      p {
+        font-size: 14px;
+      }
+    }
+  }
 }
 // 1024px
 @mixin footer-lg-xlg {
@@ -200,6 +276,38 @@
         &-links {
           margin-bottom: 30px;
         }
+      }
+    }
+  }
+  .copy {
+    background-color: #1e2222;
+    &__inner {
+      flex-direction: column;
+      padding: 32px 0;
+    }
+    &Item {
+      width: 100% !important;
+      border: unset;
+      justify-content: center !important;
+      text-align: center;
+      padding: 0;
+      margin-bottom: 28px;
+      &:last-child {
+      }
+      &:first-child {
+        order: 2;
+        margin: 0;
+      }
+      &__location {
+        svg {
+          display: none;
+        }
+        p {
+          width: 100%;
+        }
+      }
+      p {
+        font-size: 16px;
       }
     }
   }

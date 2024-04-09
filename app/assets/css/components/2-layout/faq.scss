@@ -1,0 +1,151 @@
+.faq {
+  padding: 100px 0 115px;
+  &__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    &-content {
+      width: calc(42% - 18px);
+      max-width: 450px;
+      h6 {
+        margin-bottom: 15px;
+      }
+      h2 {
+        margin-bottom: 30px;
+      }
+      p {
+        margin-bottom: 30px;
+      }
+    }
+    &-col {
+      display: flex;
+      flex-direction: column;
+      width: calc(58% - 18px);
+      max-width: 700px;
+    }
+  }
+  &Item {
+    border-bottom: 1px solid #e2eaed;
+    &:first-child {
+      .faqItem {
+        &__head {
+          padding-top: 0;
+        }
+      }
+    }
+    &:last-child {
+      border: unset;
+    }
+    &__head {
+      position: relative;
+      cursor: pointer;
+      padding: 25px 20px 25px 0;
+      &.active {
+        span {
+          &::before {
+            transform: translate(-50%, -50%) rotate(-90deg);
+            opacity: 0;
+          }
+          &::after {
+            background: $white;
+          }
+        }
+        h6 {
+          background: linear-gradient(90deg, #3578e2 0%, #4d97e8 100%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+          text-fill-color: transparent;
+          transition: 0.3s ease;
+        }
+      }
+      h6 {
+      }
+      span {
+        width: 15px;
+        height: 15px;
+        position: absolute;
+        top: 50%;
+        right: 0;
+        transform: translateY(-50%);
+        &::before {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          width: 2px;
+          height: 100%;
+          content: "";
+          border-radius: 3px;
+          background: linear-gradient(90deg, #3578e2 0%, #4d97e8 100%);
+          transform: translate(-50%, -50%);
+          transition: 0.3s ease;
+        }
+        &::after {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          width: 100%;
+          height: 2px;
+          content: "";
+          border-radius: 3px;
+          background: linear-gradient(90deg, #3578e2 0%, #4d97e8 100%);
+          transform: translate(-50%, -50%);
+          transition: 0.3s ease;
+        }
+      }
+    }
+    &__body {
+      padding: 5px 20px 25px 0;
+    }
+  }
+}
+// 930px
+@mixin faq-md-lg {
+  .faq {
+    padding: 60px 0 80px;
+    &__inner {
+      flex-direction: column;
+      &-content {
+        width: 100%;
+        max-width: unset;
+        margin-bottom: 60px;
+      }
+      &-col {
+        width: 100%;
+        max-width: unset;
+      }
+    }
+  }
+}
+// 540px
+@mixin faq-xsm-sm {
+  .faq {
+    padding: 40px 0 80px;
+    &__inner {
+      &-content {
+        margin-bottom: 40px;
+        h6 {
+          display: none;
+        }
+        p {
+          display: none;
+        }
+        .button {
+          display: none;
+        }
+        h2 {
+          text-align: center;
+          margin: 0;
+        }
+      }
+    }
+    &Item {
+      &__head {
+        padding: 15px 20px 15px 0;
+      }
+      &__body {
+        padding: 0 10px 15px 0;
+      }
+    }
+  }
+}

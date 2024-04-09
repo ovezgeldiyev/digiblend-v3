@@ -1,6 +1,8 @@
 .terms {
   padding: 120px 0 110px;
   &__inner {
+    display: flex;
+    justify-content: space-between;
     &-nav {
       display: flex;
       align-items: center;
@@ -49,11 +51,81 @@
       }
     }
   }
+  &Side {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    button {
+      padding: 20px 16px;
+      border-bottom: 1px solid transparent;
+      position: relative;
+      cursor: pointer;
+      transition: 0.3s ease;
+      background-color: transparent;
+      font-family: $mainFont;
+      color: $white;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      &:hover {
+        background: rgba(255, 255, 255, 0.1);
+      }
+      &.active {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: $white;
+      }
+      &::before {
+        position: absolute;
+        top: 50%;
+        right: 15px;
+        width: 10px;
+        height: 10px;
+        border-top: 2px solid $white;
+        border-right: 2px solid $white;
+        transform: translateY(-50%) rotate(45deg);
+        content: "";
+      }
+      h6 {
+        font-weight: 500;
+      }
+    }
+  }
+  &Main {
+    width: calc(100% - 330px);
+    max-width: 860px;
+  }
 }
 // 1024px
 @mixin terms-lg-xlg {
   .terms {
     padding: 80px 0 100px;
+    &Side {
+      width: 270px;
+    }
+    &Main {
+      width: calc(100% - 295px);
+    }
+  }
+}
+// 930px
+@mixin terms-md-lg {
+  .terms {
+    padding: 65px 0 100px;
+    &__inner {
+      flex-direction: column;
+      &-nav {
+        display: none;
+      }
+    }
+    &Side {
+      width: 100%;
+      max-width: 300px;
+      margin-bottom: 50px;
+    }
+    &Main {
+      width: 100%;
+      max-width: unset;
+    }
   }
 }
 // 540px

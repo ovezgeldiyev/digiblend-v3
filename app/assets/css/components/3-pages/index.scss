@@ -14,10 +14,16 @@
     }
   }
   &.new {
-    margin-bottom: 140px;
     .hero {
       &__inner {
-        padding: 100px 0 115px;
+        padding: 75px 0 65px;
+      }
+      &Slide {
+        &__title {
+          p {
+            max-width: 558px;
+          }
+        }
       }
     }
     .slick {
@@ -327,6 +333,10 @@
       }
     }
     ul {
+      margin-bottom: 40px;
+      &:last-child {
+        margin: 0;
+      }
       li {
         display: flex;
         align-items: center;
@@ -354,20 +364,23 @@
     }
   }
   &Form {
-    position: absolute;
-    top: 0;
-    right: 0;
     width: calc(50% - 10px);
     border-radius: 10px;
     background-color: $white;
-    padding: 40px;
+    padding: 60px 55px 45px;
     color: $black;
     max-width: 600px;
     box-sizing: border-box;
+    position: relative;
     &__title {
-      margin-bottom: 10px;
-      max-width: 450px;
+      margin-bottom: 15px;
+      width: calc(100% - 170px);
+      max-width: 307px;
       h5 {
+        font-weight: 700;
+        font-size: 20px;
+        line-height: 120%;
+        color: $black;
         font-weight: 600;
         span {
           background: linear-gradient(90deg, #3578e2 0%, #4d97e8 100%);
@@ -376,6 +389,20 @@
           background-clip: text;
           text-fill-color: transparent;
         }
+      }
+    }
+    &__image {
+      position: absolute;
+      top: 50px;
+      right: 60px;
+      width: 152px;
+      height: 213px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+      img {
+        @include fullImage;
       }
     }
     &__row {
@@ -391,12 +418,16 @@
       }
     }
     .input {
+      transition: 0.3s ease;
+      &.error {
+        margin-bottom: 20px;
+      }
       &__outer {
-        margin: 16px 0;
+        margin: 10px 0;
         width: 100%;
         &.sm {
-          width: calc(50% - 6px);
-          max-width: 240px;
+          width: calc(100% - 170px);
+          max-width: 307px;
         }
         h6 {
           font-weight: 400;
@@ -407,12 +438,17 @@
         }
       }
       input {
+        font-family: $mainFont;
         background-color: $white;
         color: $black;
         border: 1px solid #d7d8dc;
         padding: 12px;
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 150%;
         &::placeholder {
-          color: #c9c9c9;
+          color: #000000;
+          font-weight: 600;
         }
       }
       p {
@@ -455,9 +491,15 @@
       border-radius: 10px;
       padding: 12px;
       margin-bottom: 10px;
+      &:hover {
+        svg {
+          transform: translateX(6px);
+        }
+      }
       svg {
         width: 15px;
         height: 15px;
+        transition: 0.3s ease;
       }
     }
   }
@@ -478,12 +520,6 @@
         padding: 80px 0 20px;
       }
     }
-    &.new {
-      margin-bottom: 160px;
-      .hero__inner {
-        padding: 70px 0 100px;
-      }
-    }
     &__inner {
       padding: 90px 0 240px;
     }
@@ -497,6 +533,11 @@
     }
     &Form {
       padding: 30px;
+      &__image {
+        height: 203px;
+        top: 30px;
+        right: 30px;
+      }
     }
   }
 }
@@ -511,7 +552,7 @@
     &.new {
       margin-bottom: 0;
       .hero__inner {
-        padding: 55px 0 95px !important;
+        padding: 55px 0 150px !important;
       }
       .heroSlide {
         &__title {
@@ -520,17 +561,29 @@
           }
         }
       }
+      .player {
+        display: none;
+      }
     }
     &Slide {
       &__side {
         width: 100%;
       }
+      &__row {
+        flex-wrap: wrap;
+        position: static;
+      }
     }
     &Form {
-      display: none;
+      position: absolute;
+      top: calc(100% - 100px);
+      left: 50%;
+      width: 100%;
+      margin: 0;
+      transform: translateX(-50%);
     }
     &Contact {
-      display: block;
+      display: none;
       margin-bottom: 48px;
       .input {
         display: flex;
@@ -597,6 +650,32 @@
 // 540px
 @mixin hero-xsm-sm {
   .hero {
+    &.new {
+      .hero__inner {
+        padding: 40px 0 150px !important;
+      }
+      .heroSlide {
+        &__title {
+          margin-bottom: 25px;
+          h1 {
+            margin: 0;
+          }
+          p {
+            display: none;
+          }
+        }
+        ul {
+          margin-bottom: 30px;
+        }
+        & > .button {
+          width: 100%;
+          max-width: 258px;
+        }
+      }
+      .player {
+        display: none;
+      }
+    }
     &.sm {
       .hero__inner {
         padding: 55px 0 20px;
@@ -642,6 +721,31 @@
     }
     &Contact {
       margin-bottom: 56px;
+    }
+    &Form {
+      padding: 25px;
+      &__title {
+        width: calc(100% - 100px);
+        min-height: 106px;
+        h5 {
+          font-size: 19px;
+          line-height: 120%;
+        }
+      }
+      &__image {
+        width: 76px;
+        height: 106px;
+        top: 25px;
+        right: 40px;
+      }
+      .input {
+        &__outer {
+          &.sm {
+            width: 100%;
+            max-width: unset;
+          }
+        }
+      }
     }
   }
 }

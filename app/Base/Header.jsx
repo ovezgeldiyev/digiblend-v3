@@ -14,6 +14,8 @@ const languageList = [
 export default function Header({ item, servicesMenu }) {
   // console.log(servicesMenu)
   const dropBtnRef = useRef(null);
+  const [campaignHead, setCampaignHead] = useState(false);
+
   const [menu, setMenu] = useState(false);
   const [drop, setDrop] = useState(false);
   const [dropTab, setDropTab] = useState("overview");
@@ -53,6 +55,13 @@ export default function Header({ item, servicesMenu }) {
   useEffect(() => {
     window.addEventListener("scroll", scrollFunc);
   }, []);
+  useEffect(() => {
+    if (pathname.includes("/campaign")) {
+      setCampaignHead(true);
+    } else {
+      setCampaignHead(false);
+    }
+  }, [pathname]);
   return (
     <>
       <header
@@ -69,7 +78,7 @@ export default function Header({ item, servicesMenu }) {
         }}
       >
         <div className="auto__container">
-          <div className="header__inner">
+          <div className={"header__inner " + (campaignHead ? "removed" : "")}>
             <div className="header__inner-side">
               <Link
                 href="/"
@@ -79,337 +88,339 @@ export default function Header({ item, servicesMenu }) {
                   setMenuType("main");
                 }}
               >
-                <img src={item.logo?.data?.attributes.url} alt="" />
+                {/* <img src={item?.logo?.data?.attributes.url} alt="" /> */}
+                <img src="/images/logo-name.svg" alt="" />
               </Link>
             </div>
-            <nav
-              className={"nav " + (menu ? "active" : "")}
-              // onClick={closeMenu}
-            >
-              <div className="nav__inner">
-                <ul>
-                  <li
-                    className={
-                      "dropBtn " +
-                      (drop ? "active" : "") +
-                      (activeLink === "what" || activeLink === null
-                        ? ""
-                        : " gray")
-                    }
-                    onMouseOver={() => setActiveLink("what")}
-                    onMouseLeave={() => setActiveLink(null)}
-                    ref={dropBtnRef}
-                  >
-                    <a href="#">What we do</a>
-                  </li>
-                  <li
-                    className={
-                      (drop ? "gray" : "") +
-                      (activeLink === "who" || activeLink === null
-                        ? ""
-                        : " gray")
-                    }
-                    onMouseOver={() => setActiveLink("who")}
-                    onMouseLeave={() => setActiveLink(null)}
-                  >
-                    <a href="#">Who we are</a>
-                  </li>
-                  <li
-                    className={
-                      (drop ? "gray" : "") +
-                      (activeLink === "insight" || activeLink === null
-                        ? ""
-                        : " gray")
-                    }
-                    onMouseOver={() => setActiveLink("insight")}
-                    onMouseLeave={() => setActiveLink(null)}
-                  >
-                    <a href="#">Insights</a>
-                  </li>
-                  <li
-                    className={
-                      (drop ? "gray" : "") +
-                      (activeLink === "careers" || activeLink === null
-                        ? ""
-                        : " gray")
-                    }
-                    onMouseOver={() => setActiveLink("careers")}
-                    onMouseLeave={() => setActiveLink(null)}
-                  >
-                    <a href="#">Careers</a>
-                  </li>
-                  {/* {item.links.slice(0, 4).map((el, i) => (
+            {!campaignHead && (
+              <nav
+                className={"nav " + (menu ? "active" : "")}
+                // onClick={closeMenu}
+              >
+                <div className="nav__inner">
+                  <ul>
+                    <li
+                      className={
+                        "dropBtn " +
+                        (drop ? "active" : "") +
+                        (activeLink === "what" || activeLink === null
+                          ? ""
+                          : " gray")
+                      }
+                      onMouseOver={() => setActiveLink("what")}
+                      onMouseLeave={() => setActiveLink(null)}
+                      ref={dropBtnRef}
+                    >
+                      <a href="#">What we do</a>
+                    </li>
+                    <li
+                      className={
+                        (drop ? "gray" : "") +
+                        (activeLink === "who" || activeLink === null
+                          ? ""
+                          : " gray")
+                      }
+                      onMouseOver={() => setActiveLink("who")}
+                      onMouseLeave={() => setActiveLink(null)}
+                    >
+                      <a href="#">Who we are</a>
+                    </li>
+                    <li
+                      className={
+                        (drop ? "gray" : "") +
+                        (activeLink === "insight" || activeLink === null
+                          ? ""
+                          : " gray")
+                      }
+                      onMouseOver={() => setActiveLink("insight")}
+                      onMouseLeave={() => setActiveLink(null)}
+                    >
+                      <a href="#">Insights</a>
+                    </li>
+                    <li
+                      className={
+                        (drop ? "gray" : "") +
+                        (activeLink === "careers" || activeLink === null
+                          ? ""
+                          : " gray")
+                      }
+                      onMouseOver={() => setActiveLink("careers")}
+                      onMouseLeave={() => setActiveLink(null)}
+                    >
+                      <a href="#">Careers</a>
+                    </li>
+                    {/* {item.links.slice(0, 4).map((el, i) => (
                     <li key={i}>
                       <Link href={el.url}>{el.label}</Link>
                     </li>
                   ))} */}
 
-                  {/* <Link href="/contact" className="button primary">
+                    {/* <Link href="/contact" className="button primary">
                   <span>Let’s Talk</span>
                 </Link> */}
-                </ul>
-                {menuType === "main" && (
-                  // <div className="nav__inner-main ">
-                  //   <div
-                  //     className={
-                  //       "navItem " + (pathname === "/services" ? "active" : "")
-                  //     }
-                  //   >
-                  //     <div className="navItem__inner">
-                  //       <Link
-                  //         className="navItem__link"
-                  //         href={servicesMenu.url}
-                  //         onClick={closeMenu}
-                  //       >
-                  //         <h3>{servicesMenu.label}</h3>
-                  //         <p>{servicesMenu.excerpt}</p>
-                  //       </Link>
-                  //       <button
-                  //         type="button"
-                  //         onClick={() => setMenuType("services")}
-                  //       >
-                  //         <img src="/images/icons/triangle.svg" alt="" />
-                  //       </button>
-                  //     </div>
-                  //   </div>
-                  //   {item.mobile_links.map((el, i) => (
-                  //     <div
-                  //       className={
-                  //         "navItem " +
-                  //         (pathname === el.link.url ? "active" : "")
-                  //       }
-                  //       key={i}
-                  //     >
-                  //       <div className="navItem__inner" onClick={closeMenu}>
-                  //         <Link className="navItem__link" href={el.link.url}>
-                  //           <h3>{el.link.label}</h3>
-                  //           <p>{el.excerpt}</p>
-                  //         </Link>
-                  //       </div>
-                  //     </div>
-                  //   ))}
-                  // </div>
-                  <div className="nav__inner-main ">
-                    <div className={"navItem " + (mobNav ? "active" : "")}>
-                      <div
-                        className="navItem__title"
-                        onClick={() => {
-                          setMobNav(!mobNav);
-                          setMobTab(null);
-                        }}
-                      >
-                        <h3>What we do</h3>
-                        <p>Our services for business growth</p>
-                        {chevronBottom}
+                  </ul>
+                  {menuType === "main" && (
+                    // <div className="nav__inner-main ">
+                    //   <div
+                    //     className={
+                    //       "navItem " + (pathname === "/services" ? "active" : "")
+                    //     }
+                    //   >
+                    //     <div className="navItem__inner">
+                    //       <Link
+                    //         className="navItem__link"
+                    //         href={servicesMenu.url}
+                    //         onClick={closeMenu}
+                    //       >
+                    //         <h3>{servicesMenu.label}</h3>
+                    //         <p>{servicesMenu.excerpt}</p>
+                    //       </Link>
+                    //       <button
+                    //         type="button"
+                    //         onClick={() => setMenuType("services")}
+                    //       >
+                    //         <img src="/images/icons/triangle.svg" alt="" />
+                    //       </button>
+                    //     </div>
+                    //   </div>
+                    //   {item.mobile_links.map((el, i) => (
+                    //     <div
+                    //       className={
+                    //         "navItem " +
+                    //         (pathname === el.link.url ? "active" : "")
+                    //       }
+                    //       key={i}
+                    //     >
+                    //       <div className="navItem__inner" onClick={closeMenu}>
+                    //         <Link className="navItem__link" href={el.link.url}>
+                    //           <h3>{el.link.label}</h3>
+                    //           <p>{el.excerpt}</p>
+                    //         </Link>
+                    //       </div>
+                    //     </div>
+                    //   ))}
+                    // </div>
+                    <div className="nav__inner-main ">
+                      <div className={"navItem " + (mobNav ? "active" : "")}>
+                        <div
+                          className="navItem__title"
+                          onClick={() => {
+                            setMobNav(!mobNav);
+                            setMobTab(null);
+                          }}
+                        >
+                          <h3>What we do</h3>
+                          <p>Our services for business growth</p>
+                          {chevronBottom}
+                        </div>
+                        {mobNav && (
+                          <div className="navItem__tabs">
+                            <div className="navItem__tab">
+                              <div
+                                className={
+                                  "navItem__tab-head " +
+                                  (mobTab === "design" ? "active" : "")
+                                }
+                                onClick={() => {
+                                  if (mobTab === "design") {
+                                    setMobTab(null);
+                                  } else {
+                                    setMobTab("design");
+                                  }
+                                }}
+                              >
+                                <h5>Design</h5>
+                                <span></span>
+                              </div>
+                              {mobTab === "design" && (
+                                <div className="navItem__tab-body">
+                                  <a href="#">Web design</a>
+                                  <a href="#">Software design</a>
+                                  <a href="#">App design</a>
+                                  <a href="#">Brand identity</a>
+                                </div>
+                              )}
+                            </div>
+                            <div className="navItem__tab">
+                              <div
+                                className={
+                                  "navItem__tab-head " +
+                                  (mobTab === "dev" ? "active" : "")
+                                }
+                                onClick={() => {
+                                  if (mobTab === "dev") {
+                                    setMobTab(null);
+                                  } else {
+                                    setMobTab("dev");
+                                  }
+                                }}
+                              >
+                                <h5>Development</h5>
+                                <span></span>
+                              </div>
+                              {mobTab === "dev" && (
+                                <div className="navItem__tab-body">
+                                  <a href="#">Web development</a>
+                                  <a href="#">Software development</a>
+                                  <a href="#">App development</a>
+                                  <a href="#">Headless CMS</a>
+                                </div>
+                              )}
+                            </div>
+                            <div className="navItem__tab">
+                              <div
+                                className={
+                                  "navItem__tab-head " +
+                                  (mobTab === "data" ? "active" : "")
+                                }
+                                onClick={() => {
+                                  if (mobTab === "data") {
+                                    setMobTab(null);
+                                  } else {
+                                    setMobTab("data");
+                                  }
+                                }}
+                              >
+                                <h5>Data & Analytics</h5>
+                                <span></span>
+                              </div>
+                              {mobTab === "data" && (
+                                <div className="navItem__tab-body">
+                                  <a href="#">Data collection</a>
+                                  <a href="#">Data storage</a>
+                                  <a href="#">Data analysis</a>
+                                  <a href="#">Dashboarding</a>
+                                </div>
+                              )}
+                            </div>
+                            <div className="navItem__tab">
+                              <div
+                                className={
+                                  "navItem__tab-head " +
+                                  (mobTab === "market" ? "active" : "")
+                                }
+                                onClick={() => {
+                                  if (mobTab === "market") {
+                                    setMobTab(null);
+                                  } else {
+                                    setMobTab("market");
+                                  }
+                                }}
+                              >
+                                <h5>Marketing</h5>
+                                <span></span>
+                              </div>
+                              {mobTab === "market" && (
+                                <div className="navItem__tab-body">
+                                  <a href="#">Search Engine Advertising</a>
+                                  <a href="#">Social Advertising</a>
+                                  <a href="#">Display Advertising</a>
+                                  <a href="#">B2B Leadgeneration</a>
+                                </div>
+                              )}
+                            </div>
+                          </div>
+                        )}
                       </div>
-                      {mobNav && (
-                        <div className="navItem__tabs">
-                          <div className="navItem__tab">
-                            <div
-                              className={
-                                "navItem__tab-head " +
-                                (mobTab === "design" ? "active" : "")
-                              }
-                              onClick={() => {
-                                if (mobTab === "design") {
-                                  setMobTab(null);
-                                } else {
-                                  setMobTab("design");
-                                }
-                              }}
+                      <Link href="#" className="navItem">
+                        <div className="navItem__title">
+                          <h3>Who we are</h3>
+                          <p>Making impact through technology</p>
+                        </div>
+                      </Link>
+                      <Link href="#" className="navItem">
+                        <div className="navItem__title">
+                          <h3>Insights</h3>
+                          <p>Sharing knowledge for progress</p>
+                        </div>
+                      </Link>
+                      <Link href="#" className="navItem">
+                        <div className="navItem__title">
+                          <h3>Careers</h3>
+                          <p>Join our team</p>
+                        </div>
+                      </Link>
+                      <Link href="#" className="navItem">
+                        <div className="navItem__title">
+                          <h3>Contact Us</h3>
+                          <p>We are curious about your challenges</p>
+                        </div>
+                      </Link>
+                    </div>
+                  )}
+                  {menuType === "services" && (
+                    <div className="nav__inner-main">
+                      <div
+                        className="nav__inner-back"
+                        onClick={() => setMenuType("main")}
+                      >
+                        <span>
+                          <img src="/images/icons/triangle.svg" alt="" />
+                        </span>
+                        <h6>Overview</h6>
+                      </div>
+                      {servicesMenu.nested_menus.data.map((nm) => (
+                        <div
+                          key={nm.id}
+                          className={
+                            "navItem " +
+                            (pathname === nm.attributes?.url ? "active" : "")
+                          }
+                        >
+                          <div className="navItem__inner">
+                            <Link
+                              className="navItem__link"
+                              href={nm.attributes.url}
+                              onClick={closeMenu}
                             >
-                              <h5>Design</h5>
-                              <span></span>
-                            </div>
-                            {mobTab === "design" && (
-                              <div className="navItem__tab-body">
-                                <a href="#">Web design</a>
-                                <a href="#">Software design</a>
-                                <a href="#">App design</a>
-                                <a href="#">Brand identity</a>
-                              </div>
-                            )}
-                          </div>
-                          <div className="navItem__tab">
-                            <div
-                              className={
-                                "navItem__tab-head " +
-                                (mobTab === "dev" ? "active" : "")
+                              <h3>{nm.attributes.label}</h3>
+                              <p>{nm.attributes.excerpt}</p>
+                            </Link>
+                            <button
+                              onClick={() =>
+                                setMenuType(nm.attributes.label.toLowerCase())
                               }
-                              onClick={() => {
-                                if (mobTab === "dev") {
-                                  setMobTab(null);
-                                } else {
-                                  setMobTab("dev");
-                                }
-                              }}
                             >
-                              <h5>Development</h5>
-                              <span></span>
-                            </div>
-                            {mobTab === "dev" && (
-                              <div className="navItem__tab-body">
-                                <a href="#">Web development</a>
-                                <a href="#">Software development</a>
-                                <a href="#">App development</a>
-                                <a href="#">Headless CMS</a>
-                              </div>
-                            )}
-                          </div>
-                          <div className="navItem__tab">
-                            <div
-                              className={
-                                "navItem__tab-head " +
-                                (mobTab === "data" ? "active" : "")
-                              }
-                              onClick={() => {
-                                if (mobTab === "data") {
-                                  setMobTab(null);
-                                } else {
-                                  setMobTab("data");
-                                }
-                              }}
-                            >
-                              <h5>Data & Analytics</h5>
-                              <span></span>
-                            </div>
-                            {mobTab === "data" && (
-                              <div className="navItem__tab-body">
-                                <a href="#">Data collection</a>
-                                <a href="#">Data storage</a>
-                                <a href="#">Data analysis</a>
-                                <a href="#">Dashboarding</a>
-                              </div>
-                            )}
-                          </div>
-                          <div className="navItem__tab">
-                            <div
-                              className={
-                                "navItem__tab-head " +
-                                (mobTab === "market" ? "active" : "")
-                              }
-                              onClick={() => {
-                                if (mobTab === "market") {
-                                  setMobTab(null);
-                                } else {
-                                  setMobTab("market");
-                                }
-                              }}
-                            >
-                              <h5>Marketing</h5>
-                              <span></span>
-                            </div>
-                            {mobTab === "market" && (
-                              <div className="navItem__tab-body">
-                                <a href="#">Search Engine Advertising</a>
-                                <a href="#">Social Advertising</a>
-                                <a href="#">Display Advertising</a>
-                                <a href="#">B2B Leadgeneration</a>
-                              </div>
-                            )}
+                              <img src="/images/icons/triangle.svg" alt="" />
+                            </button>
                           </div>
                         </div>
-                      )}
+                      ))}
                     </div>
-                    <Link href="#" className="navItem">
-                      <div className="navItem__title">
-                        <h3>Who we are</h3>
-                        <p>Making impact through technology</p>
-                      </div>
-                    </Link>
-                    <Link href="#" className="navItem">
-                      <div className="navItem__title">
-                        <h3>Insights</h3>
-                        <p>Sharing knowledge for progress</p>
-                      </div>
-                    </Link>
-                    <Link href="#" className="navItem">
-                      <div className="navItem__title">
-                        <h3>Careers</h3>
-                        <p>Join our team</p>
-                      </div>
-                    </Link>
-                    <Link href="#" className="navItem">
-                      <div className="navItem__title">
-                        <h3>Contact Us</h3>
-                        <p>We are curious about your challenges</p>
-                      </div>
-                    </Link>
-                  </div>
-                )}
-                {menuType === "services" && (
-                  <div className="nav__inner-main">
-                    <div
-                      className="nav__inner-back"
-                      onClick={() => setMenuType("main")}
-                    >
-                      <span>
-                        <img src="/images/icons/triangle.svg" alt="" />
-                      </span>
-                      <h6>Overview</h6>
-                    </div>
-                    {servicesMenu.nested_menus.data.map((nm) => (
-                      <div
-                        key={nm.id}
-                        className={
-                          "navItem " +
-                          (pathname === nm.attributes?.url ? "active" : "")
-                        }
-                      >
-                        <div className="navItem__inner">
-                          <Link
-                            className="navItem__link"
-                            href={nm.attributes.url}
-                            onClick={closeMenu}
-                          >
-                            <h3>{nm.attributes.label}</h3>
-                            <p>{nm.attributes.excerpt}</p>
-                          </Link>
-                          <button
-                            onClick={() =>
-                              setMenuType(nm.attributes.label.toLowerCase())
-                            }
-                          >
-                            <img src="/images/icons/triangle.svg" alt="" />
-                          </button>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                )}
-                <NestedMenu
-                  condition="design"
-                  menuType={menuType}
-                  setMenuType={setMenuType}
-                  servicesMenu={servicesMenu}
-                  closeMenu={closeMenu}
-                />
-                <NestedMenu
-                  condition="development"
-                  menuType={menuType}
-                  setMenuType={setMenuType}
-                  servicesMenu={servicesMenu}
-                  closeMenu={closeMenu}
-                />
-                <NestedMenu
-                  condition="data & analytics"
-                  menuType={menuType}
-                  setMenuType={setMenuType}
-                  servicesMenu={servicesMenu}
-                  closeMenu={closeMenu}
-                />
-                <NestedMenu
-                  condition="marketing"
-                  menuType={menuType}
-                  setMenuType={setMenuType}
-                  servicesMenu={servicesMenu}
-                  closeMenu={closeMenu}
-                />
-                <div className="nav__inner-foot">
-                  <a href={`tel:${item.phone}`} className="button primary">
-                    <span>{item.phone}</span>
-                  </a>
-                  {/* <h6 className="sup">SITE LANGUAGE</h6>
+                  )}
+                  <NestedMenu
+                    condition="design"
+                    menuType={menuType}
+                    setMenuType={setMenuType}
+                    servicesMenu={servicesMenu}
+                    closeMenu={closeMenu}
+                  />
+                  <NestedMenu
+                    condition="development"
+                    menuType={menuType}
+                    setMenuType={setMenuType}
+                    servicesMenu={servicesMenu}
+                    closeMenu={closeMenu}
+                  />
+                  <NestedMenu
+                    condition="data & analytics"
+                    menuType={menuType}
+                    setMenuType={setMenuType}
+                    servicesMenu={servicesMenu}
+                    closeMenu={closeMenu}
+                  />
+                  <NestedMenu
+                    condition="marketing"
+                    menuType={menuType}
+                    setMenuType={setMenuType}
+                    servicesMenu={servicesMenu}
+                    closeMenu={closeMenu}
+                  />
+                  <div className="nav__inner-foot">
+                    <a href={`tel:${item?.phone}`} className="button primary">
+                      <span>{item?.phone}</span>
+                    </a>
+                    {/* <h6 className="sup">SITE LANGUAGE</h6>
                 <div className="nav__inner-row">
                   <a href="#" onClick={() => setMenu(false)}>
                     <span>
@@ -430,9 +441,11 @@ export default function Header({ item, servicesMenu }) {
                     <b>ES</b>
                   </a>
                 </div> */}
+                  </div>
                 </div>
-              </div>
-            </nav>
+              </nav>
+            )}
+
             <div className="header__inner-buttons">
               <div className="ct">
                 <Link
@@ -442,16 +455,19 @@ export default function Header({ item, servicesMenu }) {
                       ? ""
                       : " gray")
                   }
-                  href={item.links[4].url}
+                  // href={item?.links[4]?.url}
+                  href=""
                   onMouseOver={() => setActiveLink("contact")}
                   onMouseLeave={() => setActiveLink(null)}
                 >
-                  {item.links[4].label}
+                  {/* {item?.links[4]?.label} */}
+                  Contact
                 </Link>
               </div>
-              <a href={`tel:${item.phone}`} className="button primary">
+              <a href={`tel:${item?.phone}`} className="button primary">
                 <span>
-                  <b>{item.phone}</b>
+                  {/* <b>{item?.phone}</b> */}
+                  <b>085-8428000</b>
                 </span>
               </a>
               {/* <LanguageSelect

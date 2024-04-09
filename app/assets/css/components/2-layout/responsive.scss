@@ -43,6 +43,10 @@
   @include insights-xlg-xxlg;
   // form page
   @include contact-xlg-xxlg;
+  // campaign
+  @include places-xlg-xxlg;
+  @include services-xlg-xxlg;
+
 }
 // 1024px
 @include lg-xlg {
@@ -76,6 +80,10 @@
   @include terms-lg-xlg;
   // insights page
   @include insights-lg-xlg;
+  // campaign
+
+  @include places-lg-xlg;
+
 }
 // 930px
 @include md-lg {
@@ -96,6 +104,14 @@
   @include footer-md-lg;
   // form page
   @include contact-md-lg;
+
+  @include terms-md-lg;
+
+  // campaign
+  @include places-md-lg;
+  @include faq-md-lg;
+  @include services-md-lg;
+
 }
 // 840px
 @include md-lg-extra {
@@ -170,12 +186,13 @@
   @include action-xsm-sm;
   // terms page
   @include terms-xsm-sm;
-
   @include article-xsm-sm;
-
   @include insights-xsm-sm;
 
+  // campaign
   @include places-xsm-sm;
+  @include faq-xsm-sm;
+  @include services-xsm-sm;
 
 }
 // 440px
@@ -186,4 +203,6 @@
 @include xxxsm-xxsm {
   @include nav-xxxsm-xxsm;
   @include offer-xxxsm-xxsm;
+  @include services-xxxsm-xxsm;
+
 }
